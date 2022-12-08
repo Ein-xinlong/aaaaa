@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="CheckGoodsCheckDataBinding">
+
+        <import type="android.view.View" />
+
+        <import type="android.text.InputType" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.check.CheckGoodsCheckViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    android:paddingStart="15dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="20dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{@string/check_task_number + vm.mDetail.taskNo}"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="@dimen/text_bigger" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{@string/check_create_time + vm.mDetail.createDate}"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="@dimen/text_bigger" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/shape_bg_white_round_conner"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/ic_search" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_search"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:afterTextChanged="@{(e)->vm.updateSearchContent(e)}"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:hint="@string/check_scan_barcode"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@{vm.mEditContent}"
+                        android:textColorHint="@color/text_color_hint"
+                        android:textSize="@dimen/text_bigger" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/zxing_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="@{(v)->vm.screen(v.getContext())}"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/ic_screen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    android:visibility="@{vm.mGoodVisible}">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_img"
+                            imageUrl="@{vm.mSkuLogo}"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/iv_img"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/iv_img"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@{vm.mSkuName}"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_bigger" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_bar_code_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/iv_img"
+                            android:text="@string/check_barcode"
+                            android:textColor="@color/text_color_hint"
+                            android:textSize="@dimen/text_normal" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_unit_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/iv_img"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/iv_img"
+                            android:text="@string/check_add_unit"
+                            android:textColor="@color/text_color_hint"
+                            android:textSize="@dimen/text_normal" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/tv_bar_code_title"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@{vm.mSkuCode}"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_normal" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_unit_title"
+                            android:layout_toEndOf="@+id/tv_unit_title"
+                            android:text="@{vm.mSkuUnit}"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_normal" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_stock"
+                            android:visibility="@{vm.mDetail.showStock == 0 ? View.GONE : View.VISIBLE}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/iv_img"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/tv_unit"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/text_color_hint"
+                            android:text="@string/check_stock" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:visibility="@{vm.mDetail.showStock == 0 ? View.GONE : View.VISIBLE}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_stock"
+                            android:layout_toEndOf="@+id/tv_stock"
+                            android:text="@{vm.mStockNum}"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_normal" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_box_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/bg_activity_common"
+                        android:visibility="@{vm.mSonGoodVisible}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="@{vm.mGoodVisible}">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:onClick="@{(v)->vm.storageClick(v.getContext())}"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_storage_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/check_storage_location"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_bigger" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/tv_storage_name"
+                            android:drawableEnd="@drawable/ic_arrow_right_dark"
+                            android:drawablePadding="5dp"
+                            android:ellipsize="end"
+                            android:gravity="end|center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@{vm.mStorageName}"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_bigger" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@color/toolbar_divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/check_quality"
+                            android:textColor="@color/text_color_dark"
+                            android:textSize="@dimen/text_bigger" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.reduce()}"
+                                android:visibility="@{vm.mSaleMode == 1 ? View.VISIBLE : View.GONE}"
+                                app:srcCompat="@drawable/ic_reduce" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_num"
+                                android:layout_width="56dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:layout_marginEnd="7dp"
+                                android:afterTextChanged="@{(e)->vm.updateStorageNum(e)}"
+                                android:background="@drawable/shape_bg_num_input"
+                                android:gravity="center"
+                                android:inputType="@{vm.mSaleMode == 1 ? InputType.TYPE_CLASS_NUMBER : InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER}"
+                                android:maxLines="1"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:selectAllOnFocus="true"
+                                android:text="@{vm.mSaleMode == 1 ? String.valueOf(vm.mNum) : vm.mNumFloat}"
+                                android:textColor="@color/text_color_dark"
+                                android:textColorHint="@color/text_color_dark"
+                                android:textSize="@dimen/text_supper_big" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.plus()}"
+                                android:visibility="@{vm.mSaleMode == 1 ? View.VISIBLE : View.GONE}"
+                                app:srcCompat="@drawable/ic_add" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_bg_button_stroke"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.checkRecordGo()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_record"
+                android:textColor="@color/text_color_dark"
+                android:textSize="@dimen/text_supper_bigger" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{()->vm.next()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_next"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+
+

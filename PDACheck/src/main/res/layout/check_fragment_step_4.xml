@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="CheckFlowStep4DataBinding">
+
+        <import type="android.view.View" />
+
+        <import type="com.jd.saas.pdacheck.flow.step3.enums.CheckReviewQtyType" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.flow.step4.CheckFlowStep4ViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common">
+
+        <!-- 生成损益 & 重新生成损益 & 损益生成中，稍后重新获取损益详情布局 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="@{vm.mShowErr ? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.mErrNotice}"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/text_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_bg_button"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="10dp"
+                android:text="@{vm.mErrBtn}"
+                android:onClick="@{(v)->vm.errClick()}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <!-- 损益单详情布局 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_activity_common"
+            android:orientation="vertical"
+            android:visibility="@{vm.mShowErr ? View.GONE : View.VISIBLE}" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bg_white_round_conner"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/CheckProfitLinearLayoutStyle">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle1"
+                        android:text="@{vm.mLossAmount}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle2"
+                        android:text="@string/check_profit_loss_total" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/CheckProfitLinearLayoutStyle">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle1"
+                        android:text="@{vm.mGainAmount}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle2"
+                        android:text="@string/check_profit_earn_total" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/CheckProfitLinearLayoutStyle">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle1"
+                        android:text="@{vm.mTotalGalPrice}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle2"
+                        android:text="@string/check_profit_mine_total" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle3"
+                        android:onClick="@{(v)->vm.filter(CheckReviewQtyType.LOSS)}"
+                        android:text="@{@string/check_profit_loss_cnt(vm.mLossCouCount)}"
+                        android:textColor="@{vm.mCheckedBtn == CheckReviewQtyType.LOSS ? @color/toolbar_menu_color : @color/text_color_dark}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle3"
+                        android:layout_marginStart="15dp"
+                        android:onClick="@{(v)->vm.filter(CheckReviewQtyType.OVER)}"
+                        android:text="@{@string/check_profit_over_cnt(vm.mGainCouCount)}"
+                        android:textColor="@{vm.mCheckedBtn == CheckReviewQtyType.OVER ? @color/toolbar_menu_color : @color/text_color_dark}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckProfitTextStyle3"
+                        android:layout_marginStart="15dp"
+                        android:onClick="@{(v)->vm.filter(CheckReviewQtyType.EQUAL)}"
+                        android:text="@{@string/check_profit_equal_cnt(vm.mNoDiffCount)}"
+                        android:textColor="@{vm.mCheckedBtn == CheckReviewQtyType.EQUAL ? @color/toolbar_menu_color : @color/text_color_dark}" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:onClick="@{(v)->vm.showSortTypeDialog()}"
+                    android:src="@drawable/ic_filter" />
+            </RelativeLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/check_profit_bar_bg"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_weight="1"
+                                android:text="@string/check_profit_serial_number"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="@string/check_profit_sku_name"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_small"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolbar_divider" />
+
+                    <HorizontalScrollView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/check_profit_bar_bg"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_1" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:layout_width="130dp"
+                                    android:text="@string/check_profit_tab_3" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_4" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_5" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_6" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_7" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/CheckProfitTextStyle4"
+                                    android:text="@string/check_profit_tab_8" />
+                            </LinearLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/check_profit_right_list_bg" />
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/toolbar_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_bg_button_stroke"
+                    android:gravity="center"
+                    android:onClick="@{(v)->vm.cancel(v.getContext())}"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/check_profit_cancel"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="@dimen/text_supper_bigger" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_bg_button"
+                    android:gravity="center"
+                    android:onClick="@{(v)->vm.commit(v.getContext())}"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/check_profit_commit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_supper_bigger" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

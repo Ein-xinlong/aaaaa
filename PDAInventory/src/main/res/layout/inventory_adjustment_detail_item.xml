@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="InventoryAdjustmentDetailItemDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="DetailItemVM"
+            type="com.jd.saas.padinventory.adjustment.detail.InventoryAdjustmentDetailItemBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_bg_white_round_conner">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_image"
+            imageUrl="@{DetailItemVM.imageUrl}"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="@dimen/inventory_textsice20"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxEms="14"
+            android:singleLine="true"
+            android:text="@{DetailItemVM.title}"
+            android:textColor="@color/inventory_adjustment_black"
+            android:textSize="@dimen/inventory_textsice16"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/icon_image"
+            app:layout_constraintTop_toTopOf="@id/icon_image" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/inventory_adjustment_item_barcode"
+            android:textColor="@color/inventory_adjustment_applicant"
+            android:textSize="@dimen/inventory_textsice14"
+            app:layout_constraintLeft_toRightOf="@id/icon_image"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/barcode_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{DetailItemVM.number}"
+            android:textColor="@color/inventory_adjustment_black"
+            android:textSize="@dimen/inventory_textsice14"
+            app:layout_constraintLeft_toRightOf="@id/barcode"
+            app:layout_constraintRight_toLeftOf="@+id/inventory_adjustment_delete"
+            app:layout_constraintTop_toTopOf="@id/barcode" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/inventory_adjustment_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@id/barcode_item"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barcode_item" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/specification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/inventory_adjustment_item_specification"
+            android:textColor="@color/inventory_adjustment_applicant"
+            android:textSize="@dimen/inventory_textsice14"
+            app:layout_constraintBottom_toBottomOf="@id/icon_image"
+            app:layout_constraintLeft_toRightOf="@id/icon_image" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/specification_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{DetailItemVM.specification}"
+            android:textColor="@color/inventory_adjustment_black"
+            app:layout_constraintLeft_toRightOf="@id/specification"
+            app:layout_constraintTop_toTopOf="@id/specification" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/storage_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:text="@string/inventory_adjustment_item_storage_location"
+            android:textColor="@color/inventory_adjustment_applicant"
+            android:textSize="@dimen/inventory_textsice14"
+            app:layout_constraintLeft_toRightOf="@id/specification_item"
+            app:layout_constraintTop_toTopOf="@id/specification_item" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/storage_location_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{DetailItemVM.storage_location_name}"
+            android:textColor="@color/inventory_adjustment_black"
+            android:textSize="@dimen/inventory_textsice14"
+            app:layout_constraintLeft_toRightOf="@id/storage_location"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/storage_location" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginHorizontal="@dimen/inventory_textsice20"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/inventory_adjustment_report_overflow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_image">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/report_overflow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@{DetailItemVM.status()}"
+                android:textColor="@color/inventory_adjustment_applicant"
+                android:textSize="@dimen/inventory_textsice14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/report_overflow_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/report_overflow"
+                android:text="@{DetailItemVM.storage_location_number}"
+                android:textColor="@color/inventory_adjustment_black"
+                android:textSize="@dimen/inventory_textsice14"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cause_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="13dp"
+                android:text="@{DetailItemVM.storage_location_cause_name}"
+                android:textColor="@color/inventory_adjustment_black"
+                android:textSize="@dimen/inventory_textsice14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/cause_item"
+                android:text="@{DetailItemVM.statusCause()}" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

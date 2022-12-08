@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="onPlusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onMinusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="afterTextChange"
+            type="androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged" />
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacheck.flow.step3.bean.CheckReviewPreOrderBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/check_bg_rectangle_solid_grey">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_order_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="18dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="@{@string/check_review_pre_order(bean.couHNo)}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/check_review_pre_order" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:singleLine="true"
+            android:text="@{bean.createDate}"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintStart_toStartOf="@+id/tv_order_no"
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_no"
+            tools:text="2022-01-11 11:11:11" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="@{bean.operator}"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_no"
+            tools:text="U23333333333" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="13dp"
+            android:background="@color/toolbar_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_create_time" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_order_qty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/check_review_pre_order_qty"
+                android:textColor="@color/text_color_dark"
+                android:textSize="@dimen/text_bigger"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMinus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{onMinusClick}"
+                app:srcCompat="@drawable/ic_reduce" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etInput"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{afterTextChange}"
+                android:background="@drawable/check_bg_rectangle_solid_white"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:selectAllOnFocus="true"
+                android:text="@{bean.inputQtyStr}"
+                android:textColor="@color/text_color_dark"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="@dimen/text_supper_big"
+                tools:text="20" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/add_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{onPlusClick}"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_actual_qty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/layout_actual_qty"
+                app:srcCompat="@drawable/ic_add" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

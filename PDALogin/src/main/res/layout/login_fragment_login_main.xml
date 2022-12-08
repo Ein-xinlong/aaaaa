@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="LoginMainActivityDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="loginVm"
+            type="com.example.pdalogin.login.LoginMainViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/login_ic_logo" />
+
+            <!-- 账密登录 -->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:visibility="@{loginVm.mLoginByCode ? View.GONE : View.VISIBLE}"
+                android:layout_height="wrap_content">
+
+                <com.example.pdalogin.widgets.LoginClearEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:afterTextChanged="@{(e)->loginVm.setAccountStr(e)}"
+                    android:background="@null"
+                    android:hint="@string/login_count_hint"
+                    android:textColorHint="@color/text_color_hint"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="@dimen/text_supper_big" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/login_input_divider" />
+
+                <com.example.pdalogin.widgets.LoginClearEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_marginTop="30dp"
+                    android:afterTextChanged="@{(e)->loginVm.setPasswordStr(e)}"
+                    android:background="@null"
+                    android:inputType="textPassword"
+                    android:hint="@string/login_password"
+                    android:textColorHint="@color/text_color_hint"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="@dimen/text_supper_big" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/login_input_divider" />
+            </LinearLayout>
+
+            <!-- 验证码登录 -->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:visibility="@{loginVm.mLoginByCode ? View.VISIBLE : View.GONE}"
+                android:layout_height="wrap_content">
+
+                <com.example.pdalogin.widgets.LoginClearEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:afterTextChanged="@{(e)->loginVm.setPhoneStr(e)}"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:hint="@string/login_phone_num"
+                    android:maxLength="11"
+                    android:textColorHint="@color/text_color_hint"
+                    android:textColor="@color/text_color_dark"
+                    android:textSize="@dimen/text_supper_big" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/login_input_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <com.example.pdalogin.widgets.LoginClearEditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:afterTextChanged="@{(e)->loginVm.setCodeStr(e)}"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:hint="@string/login_code"
+                        android:maxLength="6"
+                        android:textColorHint="@color/text_color_hint"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="@dimen/text_supper_big" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginStart="10dp"
+                        android:text="@{loginVm.mSendingSmsCodeStr}"
+                        android:textSize="@dimen/text_bigger"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color_dark"
+                        android:clickable="@{loginVm.mSendingSmsBtnClickable}"
+                        android:onClick="@{(v)->loginVm.sendingCode(v.getContext())}"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/login_input_divider" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingTop="9dp"
+                android:paddingBottom="9dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{()->loginVm.login()}"
+                android:text="@string/login_login_btn_text"
+                android:textColor="@color/text_color_light"
+                android:textSize="@dimen/login_text_19"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ripple_bg_item_dark"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:onClick="@{()->loginVm.loginMode()}"
+                android:text="@{!loginVm.mLoginByCode ? @string/login_login_by_code : @string/login_login_by_password}"
+                android:textColor="@color/text_color_dark"
+                android:textSize="@dimen/text_bigger" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="5dp"
+            app:srcCompat="@drawable/ic_goback_dark" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_shutdown"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="5dp"
+            app:srcCompat="@drawable/ic_shutdown" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:textColor="@color/text_color_dark"
+        android:textSize="@dimen/toolbar_title_size" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/iv_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="5dp"
+        android:textSize="@dimen/toolbar_menu_text_size"
+        android:textColor="@color/toolbar_menu_color"
+        android:layout_marginEnd="10dp"/>
+
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="match_parent"
+        android:background="@color/toolbar_divider"
+        android:layout_gravity="bottom"
+        android:layout_height="0.5dp"/>
+</merge>

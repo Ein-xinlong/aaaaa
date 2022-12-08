@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jd.saas.pdainventorycheck">
+
+    <application>
+        <activity
+            android:name=".details.InventoryCheckDetailActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".inquire.InventoryCheckInquireActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+    </application>
+
+</manifest>

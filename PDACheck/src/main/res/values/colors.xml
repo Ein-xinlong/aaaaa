@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="check_layout_bg_grey">#FFF7F7F7</color>
+    <color name="check_profit_bar_bg">#EEEEF5</color>
+    <color name="check_profit_right_list_bg">#FAFAFA</color>
+</resources>

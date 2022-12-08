@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_transparent">#00000000</color>
+    <color name="main_text_color">#333333</color>
+    <color name="main_text_menu_title_color">#1D1F2B</color>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="validity_adjust_title">效期调整</string>
+    <string name="validity_adjust_bar_code">商品条码：</string>
+    <string name="validity_adjust_unit">单位：</string>
+    <string name="validity_adjust_time_limit">保质期：</string>
+    <string name="validity_adjust_day">天</string>
+    <string name="validity_adjust_born_day">生产日期</string>
+    <string name="validity_adjust_warning_day">预警日期</string>
+    <string name="validity_adjust_notice_day">提示日期</string>
+    <string name="validity_adjust_fail_day">失效日期</string>
+    <string name="validity_adjust_num">库存数量</string>
+    <string name="validity_adjust_num_total">库存总数量：</string>
+    <string name="validity_adjust_confirm">确认提交</string>
+    <string name="validity_adjust_confirm_success">提交成功</string>
+    <string name="validity_adjust_good">好品</string>
+    <string name="validity_adjust_bad">坏品</string>
+    <string name="validity_adjust_born_time_null">暂不允许调整该批次</string>
+    <string name="validity_adjustment_get_date_err">效期时间获取失败</string>
+    <string name="validity_adjustment_storage_no_err">该商品无库位信息</string>
+
+    <string name="validity_adjustment_list_title">效期调整</string>
+    <string name="validity_adjustment_list_input_hint">请输入商品名称/商品编码</string>
+    <string name="validity_adjustment_list_shop_barcode">商品条码</string>
+    <string name="validity_adjustment_list_unit">单位：</string>
+    <string name="validity_adjustment_list_term_of_validity">保质期：</string>
+    <string name="validity_adjustment_list_day">天</string>
+    <string name="validity_adjustment_list_storage_location">库位</string>
+    <string name="validity_adjustment_list_stock">可用库存：</string>
+    <string name="validity_adjustment_list_stock_number">库存数量：</string>
+    <string name="validity_adjustment_list_produce_data">生产日期：</string>
+    <string name="validity_adjustment_list_waring_data">预警日期：</string>
+    <string name="validity_adjustment_list_tip_data">提示日期：</string>
+    <string name="validity_adjustment_list_invalidation_data">失效日期：</string>
+    <string name="validity_adjustment_search_empty">未找到搜索结果</string>
+    <string name="validity_adjustment_not">非效期商品</string>
+
+    <string name="validity_adjustment_commit_err">可调整库存数量不可大于此批次库存数量</string>
+    <string name="validity_max_value_err">已超出最大值</string>
+
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data class="InventoryStockItemOddNumberDataBinding">
+        <import type="com.jd.saas.pdacommon.date.DateUtils"/>
+        <variable
+            name="vm"
+            type="com.jd.saas.padinventory.stock.InventoryStockRepostBean.ItemListBean" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ripple_bg_card_global"
+        android:orientation="vertical"
+        android:onClick="@{(v)->vm.onLookDetail()}"
+        >
+
+        <RelativeLayout
+
+            android:id="@+id/rl_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_create_odd_Number"
+                android:textSize="@dimen/text_bigger"
+                android:textStyle="bold"
+                android:textColor="@color/inventory_stock_text_odd_number"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@{vm.galNo}"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_toRightOf="@id/text"
+                android:textColor="@color/inventory_stock_text_odd_number"
+                android:textSize="@dimen/text_bigger"
+                android:layout_toLeftOf="@id/status"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableEnd="@drawable/ic_arrow_right_dark"
+                android:drawablePadding="5dp"
+                android:text="@{vm.status==40? @string/inventory_create_Approved:vm.status==50?@string/inventory_create_under_review:@string/inventory_create_approval_failed}"
+                android:gravity="center_vertical"
+                android:textColor="@{vm.status==40? @color/inventory_stock_text_success:vm.status==50?@color/inventory_stock_text_ing:@color/inventory_stock_text_fail}"
+                android:textSize="@dimen/text_bigger" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/rl_status"
+            android:layout_marginTop="20dp"
+            android:background="@color/toolbar_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inventory_stock_creator"
+                    android:textColor="@color/inventory_stock_text_creator"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{vm.createBy}"
+                    android:singleLine="true"
+                    android:maxLength="15"
+                    android:ellipsize="end"
+                    android:textColor="@color/inventory_stock_text_creator_name"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inventory_stock_create_time"
+                    android:textColor="@color/inventory_stock_text_creator"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{vm.createDate}"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/inventory_stock_text_odd_number"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

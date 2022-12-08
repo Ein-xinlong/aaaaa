@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="CheckFlowMainDataBinding">
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.flow.CheckFlowMainViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.jd.saas.pdacommon.toolbar.NormalTitleBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp">
+
+            <FrameLayout
+                style="@style/CheckFlowFrameLayoutStyle"
+                android:clickable="@{vm.mTab1UI.tabClickable}"
+                android:onClick="@{(v)->vm.switchFragment(1)}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/CheckFlowTextStyle"
+                    android:drawableStart="@{vm.mTab1UI.tabIcon}"
+                    android:text="@string/check_flow_1"
+                    android:textColor="@{vm.mTab1UI.tabTextColorDark ? @color/text_color_dark : @color/text_color_hint}" />
+            </FrameLayout>
+
+            <View style="@style/CheckFlowLineStyle" />
+
+            <FrameLayout
+                style="@style/CheckFlowFrameLayoutStyle"
+                android:clickable="@{vm.mTab2UI.tabClickable}"
+                android:onClick="@{(v)->vm.switchFragment(2)}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/CheckFlowTextStyle"
+                    android:drawableStart="@{vm.mTab2UI.tabIcon}"
+                    android:text="@string/check_flow_2"
+                    android:textColor="@{vm.mTab2UI.tabTextColorDark ? @color/text_color_dark : @color/text_color_hint}" />
+            </FrameLayout>
+
+            <View style="@style/CheckFlowLineStyle" />
+
+            <FrameLayout
+                style="@style/CheckFlowFrameLayoutStyle"
+                android:clickable="@{vm.mTab3UI.tabClickable}"
+                android:onClick="@{(v)->vm.switchFragment(3)}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/CheckFlowTextStyle"
+                    android:drawableStart="@{vm.mTab3UI.tabIcon}"
+                    android:text="@string/check_flow_3"
+                    android:textColor="@{vm.mTab3UI.tabTextColorDark ? @color/text_color_dark : @color/text_color_hint}" />
+            </FrameLayout>
+
+            <View style="@style/CheckFlowLineStyle" />
+
+            <FrameLayout
+                style="@style/CheckFlowFrameLayoutStyle"
+                android:clickable="@{vm.mTab4UI.tabClickable}"
+                android:onClick="@{(v)->vm.switchFragment(4)}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/CheckFlowTextStyle"
+                    android:drawableStart="@{vm.mTab4UI.tabIcon}"
+                    android:text="@string/check_flow_4"
+                    android:textColor="@{vm.mTab4UI.tabTextColorDark ? @color/text_color_dark : @color/text_color_hint}" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

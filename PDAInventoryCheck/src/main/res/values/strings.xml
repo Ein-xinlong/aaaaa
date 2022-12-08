@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inventory_check_title">库存查询</string>
+    <string name="inventory_check_details">库存详情</string>
+    <string name="inventory_check_search_hint">请输入商品名称/商品编码</string>
+    <string name="inventory_check_no_data">暂无库存信息</string>
+    <string name="inventory_check_no_goods">暂无商品信息</string>
+    <string name="inventory_check_no_stock">该商品暂无库存信息！</string>
+    <string name="inventory_check_no_info">未查询到该商品信息！</string>
+    <string name="hello_blank_fragment">暂无库存信息</string>
+    <string name="inventory_check_categories">类目：</string>
+    <string name="inventory_check_type">类型：</string>
+    <string name="inventory_check_unit">单位：</string>
+    <string name="inventory_check_encoding">编码：</string>
+    <string name="inventory_check_barcode">条码：</string>
+    <string name="inventory_check_more">查看更多</string>
+    <string name="inventory_check_total">总库存</string>
+    <string name="inventory_check_avaible">可用库存</string>
+    <string name="inventory_check_pre">预占库存</string>
+    <string name="inventory_check_info">库位信息</string>
+    <string name="inventory_check_total_good">好品总库存</string>
+    <string name="inventory_check_total_bad">坏品总库存</string>
+    <string name="inventory_check_code">库位编码</string>
+    <string name="inventory_check_scatter">零拣位</string>
+    <string name="inventory_check_storage">存储位</string>
+    <string name="inventory_check_flow_info">库存流水信息</string>
+    <string name="inventory_check_date_select">请选择日期</string>
+    <string name="inventory_check_types_all">全部类型</string>
+    <string name="inventory_check_business_num">业务单据号：</string>
+    <string name="inventory_check_creator">操作人：</string>
+    <string name="inventory_check_batch">批次号：</string>
+    <string name="inventory_check_time">时间：</string>
+
+    <string name="inventory_check_barcode2">条码</string>
+    <string name="inventory_check_look_barcode">查看商品条码</string>
+    <string name="inventory_check_close">关闭</string>
+    <string name="inventory_check_split">";"</string>
+    <string name="inventory_check_colon">：</string>
+
+    <string name="inventory_check_flow_type">选择类型</string>
+    <string name="inventory_check_flow_all">全部类型</string>
+    <string name="inventory_check_flow_rec">收货</string>
+    <string name="inventory_check_flow_alloc">分配</string>
+    <string name="inventory_check_flow_out">出库</string>
+    <string name="inventory_check_flow_move">移库</string>
+    <string name="inventory_check_flow_adjust">调整</string>
+    <string name="inventory_check_flow_check">盘点</string>
+    <string name="inventory_check_flow_lot">批次效期调整</string>
+    <string name="inventory_check_flow_title">库存流水</string>
+    <string name="inventory_check_flow_data_select">请选择日期</string>
+    <string name="inventory_check_trans_rec">REC_NORM</string>
+    <string name="inventory_check_trans_alloc">ALLOC</string>
+    <string name="inventory_check_trans_out">OUT</string>
+    <string name="inventory_check_trans_mv">MV</string>
+    <string name="inventory_check_trans_adjust">ADJUST</string>
+    <string name="inventory_check_trans_check">CHECK</string>
+    <string name="inventory_check_trans_lot">LOT_ADJUST</string>
+    <string name="inventory_check_no_find_shop">没有找到商品</string>
+
+</resources>

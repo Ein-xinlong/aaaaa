@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.jd.saas.pdacommon">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <!--Zxing权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--    子午线权限 start -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--    子午线权限 end -->
+    <!--    阿凡达 start-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--    阿凡达 end-->
+    <!-- 蓝牙 -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <!-- 读写固件升级需要 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!--  android:usesPermissionFlags="neverForLocation"  适配Android12 -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Pda"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <!-- 通用扫码页面Splash页面，用来启动CaptureActivity -->
+        <activity
+            android:name=".zxing.ui.CaptureSplashActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 通用扫码页面 -->
+        <activity
+            android:name=".zxing.ui.CaptureActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 通用JDFlutter页面 -->
+        <activity
+            android:name=".flutter.MyCustomFlutterBoostActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/FlutterTheme"
+            android:windowSoftInputMode="adjustResize"></activity>
+
+        <!-- 通用Urovo小票打印测试页面 -->
+        <activity
+            android:name=".printer.urovo.UrovoPrinterTestActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 通知栏信息点击跳转activity中转页面 -->
+        <activity
+            android:name=".notification.NotificationActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
+
+        <!-- 通用自h5容器 -->
+        <activity
+            android:name=".webview.PDAWebViewActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+
+        <!-- 连接蓝牙打印机页面 -->
+        <activity
+            android:name=".printer_ble.BlueToothPrintActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+    </application>
+</manifest>

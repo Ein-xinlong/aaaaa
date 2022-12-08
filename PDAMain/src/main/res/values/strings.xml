@@ -1,0 +1,16 @@
+<resources>
+    <string name="main_home_title">首页</string>
+    <string name="main_home_loading">加载中…</string>
+    <string name="main_module_empty">暂无该模块</string>
+    <string name="main_shop_empty_err">该租户下无门店信息</string>
+    <string name="main_cang_empty_err">该租户下无仓库信息</string>
+    <string name="main_shop_dialog_title">请选择门店</string>
+    <string name="main_cang_dialog_title">请选择仓库</string>
+    <string name="main_menu_empty">您暂无任何菜单权限，请联系管理员开通</string>
+    <string name="main_home_new_order_notification_title">您有新的订单请及时处理</string>
+    <string name="main_home_new_order_notification_content">点击跳转到拣货列表</string>
+    <string name="main_store_title">请选择门店</string>
+    <string name="main_store_hint_text">请输入门店编码/门店名称</string>
+    <string name="main_cang_hint_text">请输入仓库编码/仓库名称</string>
+    <string name="main_list_empty">暂无数据</string>
+</resources>

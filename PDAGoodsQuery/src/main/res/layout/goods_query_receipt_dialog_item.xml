@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="GoodsQueryReceiptDialogItemBinding">
+        <import type="com.jd.saas.pdacommon.date.DateUtils"/>
+        <variable
+            name="bean"
+            type="com.jd.saas.pdagoodsquery.sale.model.GoodsQueryReceipt" />
+    </data>
+<androidx.appcompat.widget.LinearLayoutCompat android:id="@+id/ll_date"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="12dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{com.jd.saas.pdacommon.date.DateUtils.formatWeek(bean.date,DateUtils.FORMAT_WEEK_NO_TIME)}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goods_query_receipt_num"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.poNum}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.name}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goods_query_colon"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_big"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{bean.poCode}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goods_query_receipt_sum"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.poAmt}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

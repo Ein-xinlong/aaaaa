@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="ValidityAdjustDetailDataBinding">
+
+        <import type="android.view.View"/>
+        <import type="android.text.InputType"/>
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdavalidity.detail.ValidityAdjustViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_img"
+                        imageUrl="@{vm.mDetailBean.logo}"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_img"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_img"
+                        android:text="@{vm.mDetailBean.skuName}"
+                        android:textColor="@color/validity_adjust_text_color"
+                        android:textSize="@dimen/text_bigger" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_bar_code_title"
+                        style="@style/ValidityAdjustDetailTextLightStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@+id/iv_img"
+                        android:text="@string/validity_adjust_bar_code" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_unit_title"
+                        style="@style/ValidityAdjustDetailTextLightStyle"
+                        android:layout_alignBottom="@+id/iv_img"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_img"
+                        android:text="@string/validity_adjust_unit" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@{vm.mDetailBean.upcCode}"
+                        android:layout_toEndOf="@+id/tv_bar_code_title"
+                        android:textColor="@color/validity_adjust_text_color"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_unit_title"
+                        android:layout_toEndOf="@+id/tv_unit_title"
+                        android:text="@{vm.mDetailBean.saleUnitName}"
+                        android:textColor="@color/validity_adjust_text_color"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_time_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_unit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:textColor="@color/validity_adjust_text_color"
+                        android:text="@{vm.mDetailBean.shelfLifeUnit + @string/validity_adjust_day}"
+                        android:textSize="@dimen/text_supper_big"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ValidityAdjustDetailTextLightStyle"
+                        android:layout_alignBottom="@+id/iv_img"
+                        android:layout_toStartOf="@+id/tv_time_limit"
+                        android:text="@string/validity_adjust_time_limit" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="77dp"
+                        android:layout_height="52dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@{vm.mIcon}"
+                        android:layout_marginEnd="15dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/validity_adjust_num_total"
+                        android:textColor="@color/validity_text_color_grey_deepen"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@{vm.mSaleMode == 1 ? String.valueOf(vm.mNum) : vm.mNumFloat}"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/text_supper_big"
+                        android:textColor="@color/validity_text_storage_color"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <RelativeLayout
+                        style="@style/ValidityAdjustItemStyle"
+                        android:onClick="@{(v)->vm.dataWidget(v)}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextTitleStyle"
+                            android:text="@string/validity_adjust_born_day" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextValueStyle"
+                            android:drawableEnd="@drawable/ic_arrow_right_dark"
+                            android:drawablePadding="5dp"
+                            android:text="@{vm.mBornTime}"
+                            android:gravity="center_vertical" />
+                    </RelativeLayout>
+
+                    <View style="@style/ValidityAdjustItemDividerStyle" />
+
+                    <RelativeLayout style="@style/ValidityAdjustItemStyle">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextTitleStyle"
+                            android:text="@string/validity_adjust_notice_day" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{vm.mNoticeTime}"
+                            style="@style/ValidityAdjustItemTextValueStyle" />
+                    </RelativeLayout>
+
+                    <View style="@style/ValidityAdjustItemDividerStyle" />
+
+                    <RelativeLayout style="@style/ValidityAdjustItemStyle">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextTitleStyle"
+                            android:text="@string/validity_adjust_warning_day" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{vm.mWarnTime}"
+                            style="@style/ValidityAdjustItemTextValueStyle" />
+                    </RelativeLayout>
+
+                    <View style="@style/ValidityAdjustItemDividerStyle" />
+
+                    <RelativeLayout style="@style/ValidityAdjustItemStyle">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextTitleStyle"
+                            android:text="@string/validity_adjust_fail_day" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{vm.mUselessTime}"
+                            style="@style/ValidityAdjustItemTextValueStyle" />
+                    </RelativeLayout>
+
+                    <View style="@style/ValidityAdjustItemDividerStyle" />
+
+                    <RelativeLayout style="@style/ValidityAdjustItemStyle">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ValidityAdjustItemTextTitleStyle"
+                            android:layout_centerVertical="true"
+                            android:text="@string/validity_adjust_num" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{vm.mSaleMode == 1 ? View.VISIBLE : View.GONE}"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.reduce()}"
+                                app:srcCompat="@drawable/ic_reduce" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:layout_width="56dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:layout_marginEnd="7dp"
+                                android:background="@drawable/shape_bg_num_input"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:selectAllOnFocus="true"
+                                android:inputType="@{vm.mSaleMode == 1 ? InputType.TYPE_CLASS_NUMBER : InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER}"
+                                android:afterTextChanged="@{(e)->vm.updateStockNum(e)}"
+                                android:text="@{String.valueOf(vm.mNumModify)}"
+                                android:textColor="@color/validity_adjust_text_color"
+                                android:textColorHint="@color/validity_adjust_text_color"
+                                android:textSize="@dimen/text_supper_big" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{vm.mSaleMode == 1 ? View.VISIBLE : View.GONE}"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.plus()}"
+                                app:srcCompat="@drawable/ic_add" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.confirm(v.getContext())}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/validity_adjust_confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

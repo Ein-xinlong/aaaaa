@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="goods_query_flow_text_select">#161A23</color>
+    <color name="goods_query_flow_text_bg_red">#FA3D40</color>
+    <color name="goods_query_flow_text_number">#1D1F2B</color>
+    <color name="goods_query_flow_text_number_big">#252525</color>
+    <color name="goods_query_flow_text_creator">#898989</color>
+
+    <color name="goods_query_more">#FF4B5FE1</color>
+    <color name="goods_query_text">#FF94959C</color>
+    <color name="goods_query_view">#FFE5E5E5</color>
+    <color name="goods_query_wait_come">#FFF2973A</color>
+    <color name="goods_query_come">#FFFA3D40</color>
+    <color name="goods_query_sale_header_bg">#FFF7F7F7</color>
+    <color name="goods_query_sale_text_blue">#4B5FE1</color>
+    <color name="goods_query_sale_text_grey">#656565</color>
+
+</resources>

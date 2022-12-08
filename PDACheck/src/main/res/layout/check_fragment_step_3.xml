@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CheckFlowStep3DataBinding">
+
+        <import type="android.view.View" />
+
+        <import type="com.jd.saas.pdacheck.flow.step3.enums.CheckReviewQtyType" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.flow.step3.CheckFlowStep3ViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_page_padding"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle3"
+                android:onClick="@{(v)->vm.changeFilterType(CheckReviewQtyType.LOSS)}"
+                android:text="@{@string/check_review_loss_cnt(vm.lossSkuCnt??0)}"
+                android:textColor="@{vm.isFilterLoss?@color/toolbar_menu_color:@color/text_color_hint}"
+                tools:text="@string/check_review_loss_cnt" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle3"
+                android:layout_marginStart="15dp"
+                android:onClick="@{(v)->vm.changeFilterType(CheckReviewQtyType.OVER)}"
+                android:text="@{@string/check_review_over_cnt(vm.overSkuCnt??0)}"
+                android:textColor="@{vm.isFilterOver?@color/toolbar_menu_color:@color/text_color_hint}"
+                tools:text="@string/check_review_over_cnt" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle3"
+                android:layout_marginStart="15dp"
+                android:onClick="@{(v)->vm.changeFilterType(CheckReviewQtyType.EQUAL)}"
+                android:text="@{@string/check_review_equal_cnt(vm.equalSkuCnt??0)}"
+                android:textColor="@{vm.isFilterEqual?@color/toolbar_menu_color:@color/text_color_hint}"
+                tools:text="@string/check_review_equal_cnt" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.showSortTypeDialog()}"
+                android:src="@drawable/ic_filter" />
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="@{vm.isEmpty?View.GONE:View.VISIBLE}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/check_profit_bar_bg"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/common_page_padding"
+                            android:layout_weight="1"
+                            android:text="@string/check_review_serial_number"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_small"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="@string/check_review_sku_name"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/leftList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        tools:listitem="@layout/check_list_step_one_item" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/toolbar_divider" />
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/check_profit_bar_bg"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_loc_name" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:layout_width="130dp"
+                                android:text="@string/check_review_user" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_stock_qty" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_check_qty" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_diff_qty" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_avg_amount" />
+
+                            <TextView
+                                style="@style/CheckProfitTextStyle4"
+                                android:text="@string/check_review_diff_amount" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rightList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/check_profit_right_list_bg"
+                            tools:listitem="@layout/check_list_step_two_item" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+            </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="@{vm.isEmpty?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_info"
+                android:drawablePadding="14dp"
+                android:gravity="center_horizontal"
+                android:text="@string/check_list_empty"
+                android:textColor="#FFB7B7B7"
+                android:textSize="@dimen/text_bigger" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:visibility="@{vm.mContentClickable ? View.VISIBLE : View.GONE}"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/common_bottom_btn_padding"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{()->vm.goNext()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_review_commit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

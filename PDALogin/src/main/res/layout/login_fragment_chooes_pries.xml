@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="LoginChooesEnterpriseDataBinding">
+
+        <variable
+            name="chooesenterpriseVm"
+            type="com.example.pdalogin.enterprise.LoginChooseEnterpriseViewModel" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/chooesrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</layout>

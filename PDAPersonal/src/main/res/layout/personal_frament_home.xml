@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="PersonalActivityHomeBinding">
+
+        <import type="android.view.View" />
+        <import type="com.jd.saas.pdacommon.apptype.AppTypeUtil" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdapersonal.home.PersonalHomeViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mDrawrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.oufenghua.blog.activity.MainActivity">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/ll_root"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context=".home.PersonalHomeActivity">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="@{(v)->vm.clickClose()}"
+                    android:src="@drawable/ic_goback_dark" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/personal_title_center"
+                    android:textColor="@color/personal_black_tv"
+                    android:textSize="@dimen/text_supper_big"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="45dp"
+                        android:layout_marginBottom="36dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_personal_head"
+                            app:srcCompat="@drawable/ic_user"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_personal_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/iv_personal_head"
+                            android:layout_marginStart="11dp"
+                            android:layout_toEndOf="@id/iv_personal_head"
+                            android:text="@{vm.mUserName}"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/personal_black_tv"
+                            android:textSize="@dimen/text_supper_bigger_and_bigger"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_person_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@id/iv_personal_head"
+                            android:layout_marginStart="11dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toEndOf="@id/iv_personal_head"
+                            android:text="@{vm.mUserPin}"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/tv_person_account"
+                            android:textSize="@dimen/text_bigger" />
+                    </RelativeLayout>
+
+                    <!--切换租户门店 -->
+                    <RelativeLayout
+                        style="@style/PersonalRelativeLayoutStyle"
+                        android:onClick="@{(v)->vm.exchangeStore(v)}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/PersonalTextView"
+                            android:drawableStart="@drawable/personal_ic_store"
+                            android:text="@{AppTypeUtil.getAppType() == 1 ? @string/personal_tv_store : @string/personal_tv_cang}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView style="@style/PersonalImageView" />
+                    </RelativeLayout>
+
+                    <View style="@style/PersonalDividerStyle" />
+
+                    <!-- 用户反馈 -->
+                    <RelativeLayout
+                        style="@style/PersonalRelativeLayoutStyle"
+                        android:onClick="@{(v)->vm.clickFeedBack(v)}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/PersonalTextView"
+                            android:drawableStart="@drawable/personal_ic_feed_back"
+                            android:text="@string/personal_tv_feedback" />
+
+                        <androidx.appcompat.widget.AppCompatImageView style="@style/PersonalImageView" />
+                    </RelativeLayout>
+
+                    <View style="@style/PersonalDividerStyle" />
+
+                    <!--版本信息 -->
+                    <RelativeLayout
+                        style="@style/PersonalRelativeLayoutStyle"
+                        android:onClick="@{(v)->vm.clickVersion()}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/PersonalTextView"
+                            android:drawableStart="@drawable/personal_ic_version"
+                            android:text="@{vm.mAppVersion}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView style="@style/PersonalImageView" />
+                    </RelativeLayout>
+
+                    <View style="@style/PersonalDividerStyle" />
+
+                    <!--清理缓存 -->
+                    <RelativeLayout
+                        style="@style/PersonalRelativeLayoutStyle"
+                        android:onClick="@{(v)->vm.clickClean()}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/PersonalTextView"
+                            android:drawableStart="@drawable/personal_ic_clean"
+                            android:text="@string/personal_tv_clean" />
+
+                        <androidx.appcompat.widget.AppCompatImageView style="@style/PersonalImageView" />
+                    </RelativeLayout>
+
+                    <View style="@style/PersonalDividerStyle" />
+
+                    <!-- 设置Flutter网路代理 -->
+                    <RelativeLayout
+                        style="@style/PersonalRelativeLayoutStyle"
+                        android:visibility="@{vm.mItemVisible ? View.VISIBLE : View.GONE}"
+                        android:onClick="@{(v)->vm.clickFlutterProxy(v)}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/PersonalTextView"
+                            android:drawableStart="@drawable/personal_ic_flutter_proxy"
+                            android:text="@string/personal_tv_flutter_proxy" />
+
+                        <androidx.appcompat.widget.AppCompatImageView style="@style/PersonalImageView" />
+                    </RelativeLayout>
+
+                    <View
+                        android:visibility="@{vm.mItemVisible ? View.VISIBLE : View.GONE}"
+                        style="@style/PersonalDividerStyle" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="45dp"
+                        android:layout_marginRight="35dp"
+                        android:background="@drawable/personal_ripple_btn_logout"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:onClick="@{(v)->vm.logout(v.getContext())}"
+                        android:text="@string/personal_logout"
+                        android:textColor="@color/personal_tv_off"
+                        android:textSize="@dimen/text_bigger" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

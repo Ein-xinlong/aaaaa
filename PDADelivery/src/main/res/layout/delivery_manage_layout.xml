@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="DeliveryManageLayoutBinding">
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdadelivery.manage.DeliveryManageViewModel" />
+
+        <variable
+            name="onFilterClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onScanCodeClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical"
+        tools:context=".manage.ui.DeliveryManageFragment"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/delivery_list_search_hint"
+                android:imeOptions="actionSearch"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@={vm.searchStr}"
+                android:textColor="@color/delivery_text_hrey"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_search"
+                app:layout_constraintEnd_toStartOf="@+id/iv_scan"
+                app:layout_constraintStart_toEndOf="@+id/iv_search"
+                app:layout_constraintTop_toTopOf="@+id/iv_search" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onScanCodeClickListener}"
+                android:padding="8dp"
+                android:src="@drawable/ic_screen"
+                app:layout_constraintBottom_toBottomOf="@+id/et_search"
+                app:layout_constraintEnd_toStartOf="@+id/iv_filter"
+                app:layout_constraintTop_toTopOf="@+id/et_search"
+                app:layout_goneMarginEnd="0dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{onFilterClickListener}"
+                android:padding="8dp"
+                android:src="@drawable/ic_filter"
+                app:layout_constraintBottom_toBottomOf="@+id/et_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_search" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/delivery_diliver"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabContentStart="58dp"
+            app:tabIndicatorColor="@color/delivery_text_blue"
+            app:tabIndicatorFullWidth="false"
+            app:tabMaxWidth="220dp"
+            app:tabMinWidth="42dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/delivery_text_blue"
+            app:tabTextAppearance="@style/DeliveryTabText"
+            app:tabTextColor="@color/color_text_black" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/delivery_list_item" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_info"
+                android:drawablePadding="14dp"
+                android:gravity="center_horizontal"
+                android:text="@string/delivery_no_data"
+                android:textColor="@color/delivery_text_hery_dark"
+                android:textSize="@dimen/text_bigger" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="personal_title_center">个人中心</string>
+    <string name="personal_tv_store">切换租户门店</string>
+    <string name="personal_tv_cang">切换租户仓库</string>
+    <string name="personal_tv_version">版本信息：V</string>
+    <string name="personal_tv_version_checking">正在检查更新，有更新会弹窗提示</string>
+    <string name="personal_tv_feedback">问题反馈</string>
+    <string name="personal_tv_clean">清理缓存</string>
+    <string name="personal_tv_flutter_proxy">设置Flutter网路代理</string>
+    <string name="personal_tv_flutter_proxy_hint">请输入代理地址，如：10.254.169.176:8888，若输入空内容保存将恢复默认地址，保存后需关闭PDA，同时从后台彻底关闭</string>
+    <string name="personal_flutter_proxy_btn_save">保存</string>
+    <string name="personal_flutter_proxy_btn_save_success">已保存代理地址！</string>
+    <string name="personal_flutter_proxy_btn_clear_success">已清除代理地址！</string>
+    <string name="personal_logout">注销</string>
+    <string name="personal_logout_ing">登出中…</string>
+    <string name="personal_logout_success">已退出登录</string>
+    <string name="personal_logout_fail">退出登录失败</string>
+    <string name="personal_company_exchange">企业信息</string>
+    <string name="personal_company_current">当前企业</string>
+    <string name="personal_shop_empty_err">该租户下无门店信息</string>
+    <string name="personal_shop_dialog_title">请选择门店：</string>
+    <string name="personal_cang_dialog_title">请选择仓库：</string>
+    <string name="personal_clear">已清除缓存</string>
+    <string name="personal_logout_confirm">确认退出？</string>
+    <string name="personal_company_empty">没有获取到企业信息</string>
+    <string name="personal_store_title">请选择门店</string>
+    <string name="personal_store_title_cang">请选择仓库</string>
+    <string name="personal_store_hint_text">请输入门店编码/门店名称</string>
+    <string name="personal_cang_hint_text">请输入仓库编码/仓库名称</string>
+    <string name="personal_cang_empty_err">该租户下无仓库信息</string>
+    <string name="personal_list_empty">暂无数据</string>
+</resources>

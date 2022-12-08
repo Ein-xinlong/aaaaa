@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="inventory_divider">#FFE5E5E5</color>
+    <color name="inventory_text_hrey">#FF8A8A8A</color>
+    <color name="inventory_edit_hrey">#FFF6F6F6</color>
+    <color name="inventory_text_hrey_checkbox">#FF979797</color>
+    <color name="inventory_text_black">#FF1D1F2B</color>
+    <color name="inventory_edit_black">#FF252525</color>
+    <color name="inventory_text_black_good">#FF161A23</color>
+    <color name="inventory_text_black_more">#FF1D1F2B</color>
+    <color name="inventory_head_grey">#FFEAEAEA</color>
+    <color name="inventory_head_blue">#FF4B5FE1</color>
+    <color name="inventory_adjustment_black">#FF1D1F2B</color>
+    <color name="inventory_adjustment_applicant">#FF8A8A8A</color>
+    <color name="inventory_adjustment_bg_view">#FFE5E5E5</color>
+    <color name="inventory_adjustment_copy_color">#FF4B5FE1</color>
+    <color name="inventory_adjustment_report_overflow">#FFF7F7F7</color>
+    <color name="inventory_adjustment_detail_button">#FF4B5FE1</color>
+    <color name="inventory_adjustment_detail_dialog_textTop">#FFD8D8D8</color>
+
+    <color name="inventory_stock_text_select">#161A23</color>
+    <color name="inventory_stock_text_odd_number">#1D1F2B</color>
+    <color name="inventory_stock_text_success">#16B671</color>
+    <color name="inventory_stock_text_ing">#4B5FE1</color>
+    <color name="inventory_stock_text_fail">#FF2A2A</color>
+    <color name="inventory_stock_text_creator">#898989</color>
+    <color name="inventory_stock_text_creator_name">#252525</color>
+</resources>

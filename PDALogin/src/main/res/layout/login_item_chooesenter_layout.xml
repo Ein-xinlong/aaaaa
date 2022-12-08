@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="LoginChooesenterAdapterDataBinding">
+
+        <variable
+            name="vm"
+            type="com.example.pdalogin.bean.LoginChoseEnterpriseBean" />
+    </data>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@{vm.bgType == 1 ? @drawable/login_ripple_bg_red : @drawable/login_ripple_bg_green}"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="23dp"
+            app:srcCompat="@drawable/ic_shop"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{vm.tenantName}"
+            android:textColor="@color/text_color_light"
+            android:textSize="@dimen/text_supper_big"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:singleLine="true" />
+    </LinearLayout>
+</layout>

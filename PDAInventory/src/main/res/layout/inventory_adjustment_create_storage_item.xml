@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="CreateStorageItemDataBinding">
+
+        <import type="com.jd.saas.pdacommon.apptype.AppTypeUtil" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacommon.search.InventoryCreateDialogBean" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="@{AppTypeUtil.appType == 1 ? vm.locName : vm.locCode}"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/text_normal" />
+</layout>

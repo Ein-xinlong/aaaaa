@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'jdrouter'
+
+android {
+    compileSdkVersion rootProject.ext.buildConfig.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.buildConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.buildConfig.targetSdkVersion
+        versionCode rootProject.ext.buildConfig.versionCode
+        versionName rootProject.ext.buildConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = ["JDROUTER_MODULE_NAME": "PDAInventoryCheck"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //数据绑定
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    implementation project(":PDACommon")
+}

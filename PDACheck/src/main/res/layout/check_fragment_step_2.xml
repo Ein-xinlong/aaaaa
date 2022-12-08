@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CheckFlowStep2DataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.flow.step2.CheckFlowStep2ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_missed_check_sku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_page_padding"
+            android:layout_marginTop="12dp"
+            android:text="@{@string/check_missed_sku_cnt_title(vm.missedSkuCnt)}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="漏盘(123)" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{vm.filterZeroQty}"
+            android:paddingVertical="12dp"
+            android:theme="@style/CheckSwitchStyle"
+            app:layout_constraintEnd_toStartOf="@+id/tv_switch_desc"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_switch_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="@dimen/common_page_padding"
+            android:paddingVertical="12dp"
+            android:text="@string/check_missed_switch_desc"
+            android:textColor="@color/text_color_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_missed_check_sku">
+
+            <com.jd.saas.pdacommon.widget.LinearRecycleView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/check_item_missed_check_sku" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_missed_check_sku">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_info"
+                android:drawablePadding="14dp"
+                android:gravity="center_horizontal"
+                android:text="@string/check_missed_sku_no_data"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="@{vm.mContentClickable ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/common_bottom_btn_padding"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{()->vm.submit()}"
+                android:padding="10dp"
+                android:text="@string/check_missed_bottom_btn"
+                android:textColor="@color/ic_color_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

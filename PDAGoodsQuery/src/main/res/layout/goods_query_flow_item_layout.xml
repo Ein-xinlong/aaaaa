@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="GoodQueryFlowItemDataBinding">
+        <import type="com.jd.saas.pdacommon.date.DateUtils"/>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdagoodsquery.flow.model.GoodsQueryFlowBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ripple_bg_card_global"
+        android:orientation="vertical"
+        android:onClick="@{(v)->bean.itemClick()}">
+
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bg_red_corner"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:text="@{bean.transChildTypeName}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_small" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/goods_query_flow_data_business_num"
+                android:textStyle="bold"
+                android:textColor="@color/goods_query_flow_text_number_big"
+                android:textSize="@dimen/text_bigger" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{bean.docRefNo}"
+                android:textStyle="bold"
+                android:textColor="@color/goods_query_flow_text_number_big"
+                android:textSize="@dimen/text_bigger" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/toolbar_divider" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:gravity="center"
+                android:text="@{bean.qty}"
+                android:textStyle="bold"
+                android:textColor="@color/goods_query_flow_text_number_big"
+                android:textSize="@dimen/text_supper_bigger" />
+            <!--          -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_flow_batch"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{bean.lotCode}"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_flow_data_creator"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{bean.operator}"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_flow_data_time"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{DateUtils.formatLongDate(bean.operateTime,DateUtils.FORMAT_LONG)}"
+                        android:textColor="@color/goods_query_flow_text_number_big"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

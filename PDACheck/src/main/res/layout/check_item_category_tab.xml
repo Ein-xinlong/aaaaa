@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacheck.category.bean.CheckCategoryNode" />
+
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_bg_item_dark"
+        android:gravity="center"
+        android:onClick="@{onItemClick}"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        android:paddingEnd="4dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.name}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold"
+            tools:text="X级类目名称" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="1dp"
+            android:src="@drawable/ic_arrow_right_dark" />
+    </LinearLayout>
+</layout>

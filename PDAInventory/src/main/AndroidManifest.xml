@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jd.saas.padinventory">
+
+    <application>
+        <!-- 调整单详情 -->
+        <activity android:name=".adjustment.InventoryAdjustmentActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+        <!-- 库存调整 -->
+        <activity android:name=".stock.InventoryStockActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".create.InventoryCreateActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+        <!-- 调整单明细-->
+        <activity android:name=".adjustment.detail.InventoryAdjustmentDetailActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            />
+
+    </application>
+
+</manifest>

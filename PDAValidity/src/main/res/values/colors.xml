@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="validity_adjust_text_color">#1D1F2B</color>
+    <color name="validity_text_color_grey">#FF8A8A8A</color>
+    <color name="validity_text_color_black">#FF1D1F2B</color>
+    <color name="validity_text_color_grey_deepen">#FF898989</color>
+    <color name="validity_text_color_bg_view">#FFE5E5E5</color>
+    <color name="validity_text_storage_color">#252525</color>
+</resources>

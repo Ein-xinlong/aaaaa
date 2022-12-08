@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="InventoryFragmentCreateBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.padinventory.create.InventoryCreateViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <!-- 搜索 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_search" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:afterTextChanged="@{(e)->vm.searchContent(e)}"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/inventory_create_search_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text="@{vm.mImport}"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{(v)->vm.screenGo(v.getContext())}"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_screen" />
+        </LinearLayout>
+
+        <View style="@style/common_divider" />
+
+        <!-- 搜索part -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="@{vm.mSearchContentVisible ? View.VISIBLE : View.GONE}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="@{vm.mSearchContentVisible ? View.GONE : View.VISIBLE}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 商品详情 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:padding="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_img"
+                        imageUrl="@{vm.mImageUrl}"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_img"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_img"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{vm.mTitle}"
+                        android:textColor="@color/inventory_text_black_more"
+                        android:textSize="@dimen/text_bigger" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_bar_code_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_img"
+                        android:text="@string/inventory_create_barcode"
+                        android:textColor="@color/inventory_text_hrey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_unit_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/iv_img"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/iv_img"
+                        android:text="@string/inventory_create_specification"
+                        android:textColor="@color/inventory_text_hrey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/tv_bar_code_title"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{vm.mBarcodeNumber}"
+                        android:textColor="@color/inventory_text_black"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_unit_title"
+                        android:layout_toEndOf="@+id/tv_unit_title"
+                        android:text="@{vm.mUnit}"
+                        android:textColor="@color/inventory_text_black"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_stock_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_unit"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/tv_unit"
+                        android:text="@string/inventory_create_inventory"
+                        android:textColor="@color/inventory_text_hrey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_stock_title"
+                        android:layout_toEndOf="@+id/tv_stock_title"
+                        android:text="@{vm.mNumberGoodQty}"
+                        android:textColor="@color/inventory_text_black"
+                        android:textSize="@dimen/text_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shape_bg_copy"
+                        android:gravity="center"
+                        android:onClick="@{(v) -> vm.copy(v)}"
+                        android:paddingHorizontal="11dp"
+                        android:paddingVertical="3dp"
+                        android:text="@string/inventory_adjustment_item_copy"
+                        android:textColor="@color/inventory_head_blue"
+                        android:textSize="@dimen/text_small" />
+                </RelativeLayout>
+
+                <!-- 库位信息 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_storage_name"
+                            style="@style/InventoryCreateTextStyle"
+                            android:text="@string/inventory_create_type" />
+
+                        <RadioGroup
+                            android:id="@+id/radio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal"
+                            app:layout_constraintRight_toRightOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/radio1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/selector_checkbox"
+                                android:drawablePadding="7dp"
+                                android:text="@string/inventory_create_breakage"
+                                android:textColor="@color/inventory_text_black"
+                                android:textSize="@dimen/text_bigger" />
+
+                            <RadioButton
+                                android:id="@+id/radio2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:background="@null"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/selector_checkbox"
+                                android:drawablePadding="7dp"
+                                android:text="@string/inventory_create_overflow"
+                                android:textColor="@color/inventory_text_black"
+                                android:textSize="@dimen/text_bigger" />
+                        </RadioGroup>
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/common_divider"
+                        android:layout_marginStart="15dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:onClick="@{(v)->vm.storageLocation(v)}"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_name"
+                            style="@style/InventoryCreateTextStyle"
+                            android:text="@string/inventory_create_location" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/tv_name"
+                            android:drawableEnd="@drawable/ic_arrow_right_dark"
+                            android:drawablePadding="5dp"
+                            android:ellipsize="end"
+                            android:gravity="end|center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@{vm.mGood}"
+                            android:textColor="@color/inventory_text_black"
+                            android:textSize="@dimen/text_bigger" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/common_divider"
+                        android:layout_marginStart="15dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/InventoryCreateTextStyle"
+                            android:text="@string/inventory_create_number" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.minus()}"
+                                android:visibility="@{vm.mVis?View.VISIBLE:View.GONE}"
+                                app:srcCompat="@drawable/ic_reduce" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_number"
+                                android:layout_width="56dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:layout_marginEnd="7dp"
+                                android:afterTextChanged="@{(e)->vm.setReceiverNameTwo(e)}"
+                                android:background="@drawable/shape_bg_num_input"
+                                android:digits="@{vm.mVis? vm.number:vm.point}"
+                                android:gravity="center"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:selectAllOnFocus="true"
+                                android:text="@{vm.mInputBox}"
+                                android:textColor="@color/inventory_edit_black"
+                                android:textColorHint="@color/inventory_edit_black"
+                                android:textSize="@dimen/text_supper_big" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:onClick="@{(v)->vm.add()}"
+                                android:visibility="@{vm.mVis?View.VISIBLE:View.GONE}"
+                                app:srcCompat="@drawable/ic_add" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/common_divider"
+                        android:layout_marginStart="15dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:onClick="@{(v)->vm.cause(v)}"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_type_name"
+                            style="@style/InventoryCreateTextStyle"
+                            android:text="@string/inventory_create_type" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/tv_type_name"
+                            android:drawableEnd="@drawable/ic_arrow_right_dark"
+                            android:drawablePadding="5dp"
+                            android:ellipsize="end"
+                            android:gravity="end|center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@{vm.mCause}"
+                            android:textColor="@color/inventory_text_black"
+                            android:textSize="@dimen/text_bigger" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <View style="@style/common_divider" />
+
+        <!-- 添加按钮 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="@{vm.mSearchContentVisible ? View.GONE : View.VISIBLE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.create()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/inventory_create_save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

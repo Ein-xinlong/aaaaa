@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CheckFragmentListBinding">
+        <import type="android.view.View" />
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.list.CheckListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.jd.saas.pdacommon.widget.LinearRecycleView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bg_activity_common"
+                    tools:context=".perform.CheckListFragment" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_no_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_no_data"
+                    android:drawablePadding="13dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:text="@string/check_list_empty"
+                    android:textColor="@color/text_color_hint"
+                    android:textSize="@dimen/text_bigger" />
+            </RelativeLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_create_task"
+                android:textColor="@color/white"
+                android:onClick="@{(v)->vm.createTask()}"
+                android:textSize="@dimen/text_supper_bigger" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

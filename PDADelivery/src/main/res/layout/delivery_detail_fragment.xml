@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="DeliveryDetailDataBinding">
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Typeface" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdadelivery.detail.DeliveryDetailViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_tool_bar_test_ctl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!-- 搜索 -->
+                        <LinearLayout
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:visibility="@{vm.searchBarVisibility}"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:padding="5dp"
+                                app:srcCompat="@drawable/ic_search" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_search"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ellipsize="end"
+                                android:focusableInTouchMode="true"
+                                android:gravity="center_vertical"
+                                android:hint="@string/delivery_detail_hint_text"
+                                android:imeOptions="actionSearch"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColorHint="@color/text_color_hint"
+                                android:textSize="@dimen/text_bigger" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/zxing_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="15dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:padding="5dp"
+                                app:srcCompat="@drawable/ic_screen" />
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/company"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/ripple_bg_card_global"
+                            android:paddingBottom="20dp"
+                            app:layout_constraintTop_toBottomOf="@+id/search">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/receipt_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:paddingTop="16dp"
+                                android:paddingBottom="14dp"
+                                android:singleLine="true"
+                                android:text="@string/delivery_detail_receipt_text"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_bigger"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/receipt_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@{vm.bean.asnRefNo}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_bigger"
+                                android:textStyle="bold"
+                                app:layout_constraintBaseline_toBaselineOf="@id/receipt_text"
+                                app:layout_constraintStart_toEndOf="@id/receipt_text" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="27dp"
+                                android:src="@{vm.bean.stampRes}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view"
+                                style="@style/common_divider"
+                                android:layout_marginStart="13dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/receipt_text" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="12dp"
+                                android:orientation="vertical"
+                                app:layout_constraintTop_toBottomOf="@id/view">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="@string/delivery_detail_supplier"
+                                        android:textColor="@color/color_text_grey"
+                                        android:textSize="@dimen/text_normal" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="@{vm.bean.supplierName}"
+                                        android:textColor="@color/color_text_black"
+                                        android:textSize="@dimen/text_normal" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/delivery_create_time"
+                                        android:textColor="@color/color_text_grey"
+                                        android:textSize="@dimen/text_normal" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="@{vm.bean.createDateStr}"
+                                        android:textColor="@color/color_text_black"
+                                        android:textSize="@dimen/text_normal" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="11dp"
+                                    android:orientation="horizontal"
+                                    android:visibility="@{vm.closeTimeViewVisibility??View.GONE}">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/delivery_detail_finish_time"
+                                        android:textColor="@color/color_text_grey"
+                                        android:textSize="@dimen/text_normal" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="@{vm.bean.closeTimeStr}"
+                                        android:textColor="@color/color_text_black"
+                                        android:textSize="@dimen/text_normal" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <LinearLayout
+                    android:id="@+id/combined_sku_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:visibility="@{!vm.isFinish &amp;&amp; vm.needShowCombinedSkuTab ? View.VISIBLE:View.GONE}">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{(v)->vm.changeTab(0)}"
+                        android:padding="10dp"
+                        android:text="@string/delivery_list_tab_type_single"
+                        android:textColor="@{vm.selectTabType==0 ? @color/delivery_text_blue : @color/delivery_text_black}"
+                        android:textSize="@{vm.selectTabType==0 ? @dimen/text_big : @dimen/text_normal}"
+                        android:typeface="@{Typeface.defaultFromStyle(vm.selectTabType==0 ?Typeface.BOLD:Typeface.NORMAL)}" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{(v)->vm.changeTab(1)}"
+                        android:padding="10dp"
+                        android:text="@string/delivery_list_tab_type_combined"
+                        android:textColor="@{vm.selectTabType==1 ? @color/delivery_text_blue : @color/delivery_text_black}"
+                        android:textSize="@{vm.selectTabType==1 ? @dimen/text_big : @dimen/text_normal}"
+                        android:typeface="@{Typeface.defaultFromStyle(vm.selectTabType==1 ?Typeface.BOLD:Typeface.NORMAL)}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="8dp"
+                    android:visibility="@{vm.cntViewVisibility??View.GONE}">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/delivery_received_sku_kinds"
+                        android:textColor="@color/color_text_grey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="22dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{vm.editSkuIdCnt}"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/text_supper_big"
+                        tools:text="8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/delivery_received_sku_cnt"
+                        android:textColor="@color/color_text_grey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{vm.editSkuSumCnt}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_supper_big"
+                        tools:text="100" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="77dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:visibility="@{vm.cntView2Visibility??View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="14dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@string/delivery_detail_receipt_kind"
+                                    android:textColor="@color/color_text_grey"
+                                    android:textSize="@dimen/text_normal" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@{vm.bean.rcvTypeSizeStr}"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/text_normal" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="14dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@string/delivery_detail_shop_kind"
+                                    android:textColor="@color/color_text_grey"
+                                    android:textSize="@dimen/text_normal" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@{vm.bean.skuListSizeStr}"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/text_normal" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="12dp"
+                            android:background="@drawable/delivery_shape_gradient_divider" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="14dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@string/delivery_detail_receipt_number"
+                                    android:textColor="@color/color_text_grey"
+                                    android:textSize="@dimen/text_normal" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@{vm.bean.actualQtyStr}"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/text_normal" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="14dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@string/delivery_detail_shop_number"
+                                    android:textColor="@color/color_text_grey"
+                                    android:textSize="@dimen/text_normal" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="@{vm.bean.expectedQtyStr}"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/text_normal" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@drawable/ripple_bg_button_stroke"
+                    android:gravity="center"
+                    android:onClick="@{(v)->vm.oneKeyFill()}"
+                    android:padding="10dp"
+                    android:text="@string/delivery_detail_one_key_fill"
+                    android:textColor="@color/shape_color_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="@{vm.cntViewVisibility??View.GONE}" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_activity_common"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/delivery_detail_sku_item" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:visibility="@{vm.bottomBtnViewVisibility}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/DeliveryBottomButton"
+                android:onClick="@{(v)->vm.commit()}"
+                android:text="@string/delivery_detail_commit_detail" />
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>

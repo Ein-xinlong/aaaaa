@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.jd.saas.pdacommon.date.DateUtils" />
+
+        <variable
+            name="promotion"
+            type="com.jd.saas.pdacommon.search.SearchResultBean.Promotion" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:background="@{promotion.status == 4 ? @drawable/goods_query_bg_text_wait_come:@drawable/goods_query_bg_text_come}"
+            android:paddingHorizontal="3dp"
+            android:paddingVertical="1dp"
+            android:text="@{promotion.statusDesc}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_small"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/goods_query_bg_text_come"
+            tools:text="生效中" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@{promotion.name}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/tv_status"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="满50减2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:text="@{DateUtils.formatWeek(promotion.beginTime,DateUtils.FORMAT_WEEK)}"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_status"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="2021.05.01 12:00:00(五)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/goods_query_split_line"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_begin"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@{DateUtils.formatWeek(promotion.endTime,DateUtils.FORMAT_WEEK)}"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_line"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="2021.09.01 12:00:00(三）" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacommon.dialog.SimpleListDialog.Option" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            style="@style/common_divider"
+            android:layout_marginHorizontal="10dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="23dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.name}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/storage1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
+            android:padding="22dp"
+            android:src="@{bean.selectorRes}" />
+    </FrameLayout>
+</layout>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="">
+
+        <import type="com.jd.saas.pdacommon.date.DateUtils" />
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdainventorycheck.details.model.InventoryCheckLocationBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ripple_bg_card_global">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxEms="10"
+            android:text="@{bean.locCode}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/shape_label_bg"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:text="@{bean.locName}"
+            android:textColor="@color/inventory_check_text_blue"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="@+id/stock"
+            app:layout_constraintLeft_toRightOf="@+id/stock"
+            app:layout_constraintTop_toTopOf="@id/stock" />
+
+        <View
+            android:id="@+id/viewstock"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="13dp"
+            android:background="@color/toolbar_divider"
+            app:layout_constraintBottom_toTopOf="@+id/ll_stock"
+            app:layout_constraintTop_toBottomOf="@+id/stock" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:baselineAligned="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewstock">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:maxEms="10"
+                android:text="@{bean.qtyTotal}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_supper_bigger_and_bigger"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_weight="1.3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/tv_available_value"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--                            @{vm.mInfoData.totalQty}-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/inventory_check_total"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintHorizontal_weight="1.3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/tv_available"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_value" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_straight_line"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+                app:layout_constraintLeft_toRightOf="@+id/tv_total_value"
+                app:layout_constraintRight_toLeftOf="@+id/tv_available_value"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_value" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_available_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:maxEms="10"
+                android:text="@{bean.qtyAvailable}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_supper_big"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_value"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@+id/tv_total_value"
+                app:layout_constraintRight_toLeftOf="@+id/tv_pre_value"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_value" />
+            <!--                            @{vm.mInfoData.qtyAvailable}-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_available"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/inventory_check_avaible"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_total"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@+id/tv_total"
+                app:layout_constraintRight_toLeftOf="@+id/tv_pre"
+                app:layout_constraintTop_toBottomOf="@+id/tv_available_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_pre_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:maxEms="10"
+                android:text="@{bean.qtyAllocated}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_supper_big"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_available_value"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@+id/tv_available_value"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_available_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_pre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/inventory_check_pre"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_total"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@+id/tv_available"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pre_value" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </layout>

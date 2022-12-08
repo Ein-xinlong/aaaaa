@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jd.saas.pdavalidity">
+
+    <application>
+
+        <!-- 效期调整列表页 -->
+        <activity android:name=".list.ValidityAdjustmentListActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTop"
+            />
+
+        <!-- 效期调整详情页 -->
+        <activity
+            android:name=".detail.ValidityAdjustActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTop"/>
+    </application>
+</manifest>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="InventoryCheckInquireDataBinDing">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdainventorycheck.inquire.InventoryCheckInquireViewModel" />
+
+        <variable
+            name="onScanBtnClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/cl_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_search" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:afterTextChanged="@{(e)->vm.searchContent(e)}"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/inventory_check_search_hint"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{onScanBtnClick}"
+                android:padding="5dp"
+                android:src="@drawable/ic_screen" />
+
+        </LinearLayout>
+
+        <View style="@style/common_divider" />
+        <!-- 搜索part -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isShowImage?View.GONE:View.VISIBLE}"
+            tools:listitem="@layout/item_goods_search" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isShowImage?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_data"
+                android:drawablePadding="13dp"
+                android:gravity="center"
+                android:text="@{vm.showGoodsOrStock?@string/inventory_check_no_data:@string/inventory_check_no_goods}"
+                android:textColor="@color/inventory_check_text_no_data"
+                android:textSize="@dimen/text_bigger" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

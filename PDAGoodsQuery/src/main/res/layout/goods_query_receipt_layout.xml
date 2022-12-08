@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asdf"/>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_l"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_text_grid" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/recyclerView_l"
+        android:layout_toRightOf="@id/recyclerView_l"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_num_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/goods_query_sale_header_bg"
+                android:paddingVertical="8dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_image">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_expected_qty_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/goods_query_differ_date"
+                    android:textColor="@color/color_text_grey"
+                    android:textSize="@dimen/text_normal"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintRight_toLeftOf="@+id/tv_actual_qty_label"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_actual_qty_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/goods_query_differ_number_sale"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_expected_qty_label"
+                    app:layout_constraintRight_toLeftOf="@+id/tv_actual_qty"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_expected_qty_label" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_actual_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/goods_query_differ_number_stock"
+                    android:textSize="@dimen/text_normal"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_actual_qty_label"
+                    app:layout_constraintRight_toLeftOf="@+id/tv_arrow"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_actual_qty_label"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="7dp"
+                    android:text="@string/goods_query_differ_number_order"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintRight_toLeftOf="@id/tv_frmLoss"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_actual_qty"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_actual_qty"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_frmLoss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="7dp"
+                    android:text="@string/goods_query_differ_number_order"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/tv_frmLoss1"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_actual_qty"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_arrow"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_frmLoss1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="7dp"
+                    android:text="@string/goods_query_differ_number_order"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_actual_qty"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_frmLoss"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_t"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="9"
+                tools:listitem="@layout/item_text_grid" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_r"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/goods_query_sale_item" />
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+</RelativeLayout>

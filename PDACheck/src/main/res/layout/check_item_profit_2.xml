@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="CheckItemProfit2DataBinding">
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacheck.flow.step4.bean.CheckProfitListItemBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.locName}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:layout_width="130dp"
+                android:text="@{bean.createBy}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.stockQty}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.actualQty}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.qty}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.avgPrice}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/CheckProfitTextStyle5"
+                android:text="@{bean.galPrice}" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+    </LinearLayout>
+</layout>

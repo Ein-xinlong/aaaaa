@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacheck.category.bean.CheckCategoryNode" />
+
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSelectIconClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/ripple_bg_item_dark"
+        android:gravity="center_vertical"
+        android:onClick="@{onItemClick}"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_check"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:onClick="@{onSelectIconClick}"
+            android:src="@drawable/ic_checked_part" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingHorizontal="8dp"
+            android:text="@{bean.name}"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_color_dark"
+            android:textStyle="bold"
+            tools:text="X级类目名称" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right_dark"
+            android:visibility="@{bean.nextEnable()?View.VISIBLE:View.GONE}" />
+    </LinearLayout>
+</layout>

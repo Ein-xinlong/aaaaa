@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 新建调整单 信息列表 -->
+    <style name="InventoryCreateTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_bigger</item>
+        <item name="android:textColor">@color/inventory_text_black</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+</resources>

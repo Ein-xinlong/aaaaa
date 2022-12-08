@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- toolbar里的控件大小 -->
+    <dimen name="toolbar_title_size">20sp</dimen>
+    <dimen name="toolbar_menu_text_size">14sp</dimen>
+
+    <!-- 内容展示区域 -->
+    <dimen name="text_reload_padding">15dp</dimen>
+
+    <!-- 全局text大小 -->
+    <dimen name="text_very_small_and_small">8sp</dimen>
+    <dimen name="text_very_small">9sp</dimen>
+    <dimen name="text_smaller">10sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_small_bigger">13sp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+    <dimen name="text_big">15sp</dimen>
+    <dimen name="text_bigger">16sp</dimen>
+    <dimen name="text_supper_big">18sp</dimen>
+    <dimen name="text_supper_bigger">20sp</dimen>
+    <dimen name="text_supper_bigger_and_bigger">22sp</dimen>
+
+    <!-- 全局圆角 -->
+    <dimen name="radius_global">12dp</dimen>
+    <!--Zxing-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="toolBarHeight">48dp</dimen>
+
+    <!--    页面边距-->
+    <dimen name="common_page_padding">15dp</dimen>
+    <dimen name="common_bottom_btn_padding">20dp</dimen>
+</resources>

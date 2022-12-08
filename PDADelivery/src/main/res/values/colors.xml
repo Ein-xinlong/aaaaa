@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="delivery_text_hrey">#FF8A8A8A</color>
+    <color name="delivery_diliver">#FFE5E5E5</color>
+    <color name="delivery_text_grey">#FF898989</color>
+    <color name="delivery_text_hery_dark">#FFB7B7B7</color>
+    <color name="delivery_text_blue">#FF414CCA</color>
+    <color name="delivery_text_black">#FF1D1F2B</color>
+    <color name="delivery_text_red">#FFF93D3F</color>
+
+
+
+
+    <color name="delivery_detail_bg_view">#FFEEEEEE</color>
+    <color name="delivery_detail_report_overflow">#FFF7F7F7</color>
+    <color name="delivery_detail_red">#FFF93D3F</color>
+    <color name="delivery_detail_blue">#FF414CCA</color>
+    <color name="delivery_detail_bg_dialog_view">#FFD6D6D6</color>
+    <color name="delivery_detail_text_color">#1D1F2B</color>
+    <color name="delivery_title_menu_text_color">#FF4B5FE1</color>
+</resources>

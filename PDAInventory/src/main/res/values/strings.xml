@@ -1,0 +1,102 @@
+<resources>
+    <!-- 调整单详情 -->
+    <string name="inventory_adjustment_title">调整单详情</string>
+    <string name="inventory_adjustment_title_detail">调整单明细</string>
+    <string name="inventory_adjustment_odd_number">调整单号：</string>
+    <string name="inventory_adjustment_applicant">申请人：</string>
+    <string name="inventory_adjustment_apply_time">申请时间：</string>
+    <string name="inventory_adjustment_item_barcode">商品条码：</string>
+    <string name="inventory_adjustment_item_specification">规格：</string>
+    <string name="inventory_adjustment_item_storage_location">库位：</string>
+    <string name="inventory_adjustment_item_report_overflow">报损数量：</string>
+    <string name="inventory_adjustment_item_overflow">报溢数量：</string>
+    <string name="inventory_adjustment_item_cause">报溢原因：</string>
+    <string name="inventory_adjustment_item_report">报损原因：</string>
+    <string name="inventory_adjustment_item_copy">复制</string>
+
+    <!-- 库存调整 -->
+    <string name="inventory_stock">库存调整</string>
+    <string name="inventory_stock_input_hint">请输入调整单号</string>
+    <string name="inventory_stock_data_selected">请选择日期</string>
+    <string name="inventory_stock_all_status">全部状态</string>
+    <string name="inventory_stock_number_adjust">调整单号：</string>
+    <string name="inventory_stock_creator">创建人</string>
+    <string name="inventory_stock_create_time">申请时间</string>
+    <string name="inventory_stock_examine_success">审核通过</string>
+    <string name="inventory_stock_examine_ing">审核中</string>
+    <string name="inventory_stock_examine_fail">审核驳回</string>
+    <string name="inventory_stock_new_odd">新建调整单</string>
+    <string name="inventory_stock_status">请选择状态</string>
+    <string name="inventory_stock_search_empty">搜索内容不能为空</string>
+
+    <!-- 库存调整 -->
+    <string name="inventory_adjustment_detail_add">继续添加</string>
+    <string name="inventory_adjustment_detail_generate_submit">生成并提交</string>
+    <string name="inventory_adjustment_detail_dialog_title">确定删除吗？</string>
+    <string name="inventory_adjustment_detail_dialog_cancel">取消</string>
+    <string name="inventory_adjustment_detail_dialog_sure">确定</string>
+    <string name="inventory_adjustment_detail_list_empty">暂无数据</string>
+
+    <!-- 新建调整单 -->
+    <string name="inventory_create_name">西瓜切块</string>
+    <string name="inventory_create_barcode">商品条码：</string>
+    <string name="inventory_create_specification">规格：</string>
+    <string name="inventory_create_specification_box">盒</string>
+    <string name="inventory_create_no_shop">没有找到商品</string>
+    <string name="inventory_create_inventory">库存：</string>
+    <string name="inventory_create_type">类型</string>
+    <string name="inventory_create_location">库位</string>
+    <string name="inventory_create_breakage">报损</string>
+    <string name="inventory_create_overflow">报溢</string>
+    <string name="inventory_create_good_quality">便利店好品库位</string>
+    <string name="inventory_create_goodQty">好品库位：</string>
+    <string name="inventory_create_noGoodQty">坏品库位：</string>
+    <string name="inventory_create_number">数量</string>
+    <string name="inventory_create_reason">原因</string>
+    <string name="inventory_create_select_reason">请选择原因</string>
+    <string name="inventory_create_save">保存</string>
+    <string name="inventory_create_search_hint">请输入商品名称/商品编码</string>
+    <string name="inventory_create_adjustment">新建调整单</string>
+    <string name="inventory_create_detail">调整单明细</string>
+    <string name="inventory_create_dialog_title">选择库位</string>
+    <string name="inventory_create_dialog_cause_title">选择原因</string>
+    <string name="inventory_create_place_cause">选择原因</string>
+    <string name="inventory_create_copy_success">复制成功</string>
+    <string name="inventory_create_overflow_reason">请填写报溢原因</string>
+    <string name="inventory_create_location_reason">请填写库位原因</string>
+    <string name="inventory_create_breakage_or_overflow">请勾选报损或报溢</string>
+    <string name="inventory_create_number_reason">请添加数量</string>
+    <string name="inventory_create_ge">个</string>
+    <string name="inventory_create_he">盒</string>
+    <string name="inventory_create_fen">份</string>
+    <string name="inventory_create_dai">袋</string>
+    <string name="inventory_create_ping">瓶</string>
+    <string name="inventory_create_xiang">箱</string>
+    <string name="inventory_create_tao">套</string>
+    <string name="inventory_create_bei">杯</string>
+    <string name="inventory_create_zhi">只</string>
+    <string name="inventory_create_kg">kg</string>
+    <string name="inventory_create_g">g</string>
+    <string name="inventory_create_Weigh">称重</string>
+    <string name="inventory_create_Approved">审核通过</string>
+    <string name="inventory_create_under_review">审核中</string>
+    <string name="inventory_create_approval_failed">审核驳回</string>
+    <string name="inventory_create_odd_Number">调整单号：</string>
+    <string name="inventory_create_null_good">库位库存不足，请选择其他库位</string>
+    <string name="inventory_create_null_bad">坏品库位不足，请选择其他库位</string>
+    <string name="inventory_create_Bigger_than">数量不能大于库存</string>
+    <string name="inventory_create_success">添加成功</string>
+    <string name="inventory_create_finish">您没有提交调整单，确定要退出吗？</string>
+    <string name="inventory_create_no_overflow">该库位您已经报损该商品了,不能再报溢了</string>
+    <string name="inventory_create_no_breakage">该库位您已经报溢该商品了,不能再报损了</string>
+    <string name="inventory_create_already_location">该商品已经添加过该库位了</string>
+    <string name="inventory_create_place_commit">请添加数据</string>
+    <string name="inventory_create_commit_success">创建成功</string>
+    <string name="inventory_create_commit_fail">提交失败</string>
+    <string name="inventory_create_shop_message">商品信息</string>
+    <string name="inventory_create_no_stock">暂无库存信息</string>
+    <string name="inventory_create_most">最多添加50条数据</string>
+    <string name="inventory_Check_type">请勾选调整类型</string>
+    <string name="inventory_list_empty">暂无数据</string>
+
+</resources>

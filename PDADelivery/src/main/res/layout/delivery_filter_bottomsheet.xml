@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isWareHouse"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="selectAsnTypeAll"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="selectRadioDirect"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="selectRadioSend"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="selectRadioAllot"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="selectRadioReturn"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="timeRageStr"
+            type="java.lang.String" />
+
+        <variable
+            name="onCloseClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onResetClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSubmitClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onTimeSelectListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onTypeSelectListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_bottomsheet"
+        android:orientation="vertical"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        tools:ignore="ContentDescription">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/delivery_select_time"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:onClick="@{onCloseClickListener}"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:src="@drawable/ic_close" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/delivery_type"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_warehouse_all"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delivery_selector_textview_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/delivery_asn_type_all"
+                android:textColor="@drawable/delivery_selector_textview_color"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{isWareHouse?View.VISIBLE:View.GONE}"
+                app:selected="@{selectAsnTypeAll}" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:visibility="@{isWareHouse?View.VISIBLE:View.GONE}" />
+
+            <TextView
+                android:id="@+id/tv_direct"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delivery_selector_textview_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@{isWareHouse?@string/delivery_purchase:@string/delivery_direct}"
+                android:textColor="@drawable/delivery_selector_textview_color"
+                android:textSize="@dimen/text_normal"
+                app:selected="@{selectRadioDirect}" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_send"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delivery_selector_textview_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/delivery_send"
+                android:textColor="@drawable/delivery_selector_textview_color"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{isWareHouse?View.GONE:View.VISIBLE}"
+                app:selected="@{selectRadioSend}"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_return"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delivery_selector_textview_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/delivery_return"
+                android:textColor="@drawable/delivery_selector_textview_color"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{isWareHouse?View.VISIBLE:View.GONE}"
+                app:selected="@{selectRadioReturn}" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:visibility="@{isWareHouse?View.GONE:View.VISIBLE}" />
+
+            <TextView
+                android:id="@+id/tv_allot"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delivery_selector_textview_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/delivery_allot"
+                android:textColor="@drawable/delivery_selector_textview_color"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{isWareHouse?View.GONE:View.VISIBLE}"
+                app:selected="@{selectRadioAllot}"
+                tools:visibility="gone" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_store_all"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/delivery_selector_textview_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="@string/delivery_asn_type_all"
+            android:textColor="@drawable/delivery_selector_textview_color"
+            android:textSize="@dimen/text_normal"
+            android:visibility="@{isWareHouse?View.GONE:View.VISIBLE}"
+            app:selected="@{selectAsnTypeAll}" />
+        <!-- 时间范围 -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/delivery_time_scope"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_selectTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/ripple_oval_dark"
+            android:ellipsize="end"
+            android:hint="@string/delivery_select_time"
+            android:maxLines="1"
+            android:onClick="@{onTimeSelectListener}"
+            android:paddingLeft="28dp"
+            android:paddingTop="6dp"
+            android:paddingRight="28dp"
+            android:paddingBottom="6dp"
+            android:singleLine="true"
+            android:text="@{timeRageStr}"
+            android:textColor="@color/color_text_black"
+            android:textColorHint="@color/color_text_black"
+            android:textSize="@dimen/text_normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn"
+            style="@style/DeliveryBottomButton"
+            android:layout_marginHorizontal="7dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="@{onSubmitClickListener}"
+            android:padding="9dp"
+            android:text="@string/delivery_certain" />
+    </LinearLayout>
+</layout>

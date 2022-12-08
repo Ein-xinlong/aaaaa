@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">商羚工作台</string>
+
+    <!-- 页面内容 -->
+    <string name="click2reload">点击重新加载</string>
+    <string name="loading">加载中</string>
+
+    <!-- 网络 -->
+    <string name="net_disconnect">未连接网络</string>
+
+    <!-- 日历 -->
+    <string name="calendar_title">请选择时间</string>
+    <string name="calendar_confirm">确定</string>
+    <string name="calendar_7">日</string>
+    <string name="calendar_1">一</string>
+    <string name="calendar_2">二</string>
+    <string name="calendar_3">三</string>
+    <string name="calendar_4">四</string>
+    <string name="calendar_5">五</string>
+    <string name="calendar_6">六</string>
+    <string name="calendar_start_time_null">未选择开始时间</string>
+    <string name="calendar_end_time_null">未选择结束时间</string>
+    <string name="calendar_start_end_same">已选择范围为当天</string>
+    <string name="calendar_reset">重置</string>
+    <!-- 搜索框显示hint-->
+    <string name="search_hint_text">请输入商品名称/商品编码</string>
+
+    <string name="token_expire">登录失效，请重新登录</string>
+
+    <string name="common_cancel">取消</string>
+    <string name="common_ensure">确定</string>
+    <string name="common_close">关闭</string>
+    <string name="dialog_title">选择类型</string>
+
+    <string name="stock_trans_type_all">全部类型</string>
+    <string name="stock_trans_type_default">全部类型</string>
+    <string name="stock_trans_type_in">入库</string>
+    <string name="stock_trans_type_purchase">直送入库</string>
+    <string name="stock_trans_type_cang_purchase">采购入库</string>
+    <string name="stock_trans_type_distribution">配送入库</string>
+    <string name="stock_trans_type_allocation">调拨入库</string>
+    <string name="stock_trans_type_income_diff">收货差异入库</string>
+    <string name="stock_trans_type_reject">配送拒收入库</string>
+    <string name="stock_trans_type_user_return">售后入库</string>
+    <string name="stock_trans_type_initially">期初入库</string>
+    <string name="stock_trans_type_store_return">门店退货入库</string>
+    <string name="stock_trans_type_out">出库</string>
+    <string name="stock_trans_type_pos">POS支付</string>
+    <string name="stock_trans_type_rtv">退供出库</string>
+    <string name="stock_trans_type_rmv">退仓出库</string>
+    <string name="stock_trans_type_allot_out">调拨出库</string>
+    <string name="stock_trans_type_cang_out">配送出库</string>
+    <string name="stock_trans_type_sale">线上订单出库</string>
+    <string name="stock_trans_type_lot_adjust">批次效期调整</string>
+    <string name="stock_trans_type_check">盘点</string>
+    <string name="stock_trans_type_move">好坏品转换</string>
+    <string name="stock_trans_type_adjust">调整</string>
+    <string name="stock_trans_type_alloc">分配</string>
+    <!-- printer -->
+    <string name="common_printer">PDA打印机测试</string>
+    <string name="common_printer_content_err">打印数据为空</string>
+    <string-array name="barcode_type">
+        <item>C25INTER</item>
+        <item>CODE128</item>
+        <item>CODE93</item>
+        <item>RSS14</item>
+        <item>UPCA</item>
+        <item>PDF417</item>
+        <item>QRCODE</item>
+        <item>DATAMATRIX</item>
+        <item>MICROPDF</item>
+        <item>AZTEC</item>
+    </string-array>
+    <string name="common_printer_err_no_printer">该设备无小票打印功能</string>
+    <string name="common_printer_err_no_paper">打印机缺纸</string>
+    <string name="common_printer_err_over_heat">打印机过热</string>
+    <string name="common_printer_err_busy">打印机繁忙</string>
+
+    <string name="common_upc_code_dialog_title">查看商品条码</string>
+    <string name="common_upc_code_dialog_label">条码%d：</string>
+    <string name="common_upc_code_btn_text">查看更多</string>
+
+    <string name="common_blue_tooth_search">搜索</string>
+    <string name="common_blue_tooth_open_gps">请开启GPS，未开启可能导致无法正常进行蓝牙搜索</string>
+    <string name="common_blue_tooth_open_jurisdiction">请开启权限，未开启可能导致无法正常进行蓝牙搜索</string>
+    <string name="common_blue_tooth_open_blu">请开启蓝牙，未开启可能导致无法正常进行蓝牙搜索</string>
+    <string name="common_blue_connecting_to_bluetooth">连接蓝牙</string>
+    <string name="common_blue_printer_connected">打印机已连接，开始打印</string>
+    <string name="common_blue_connection_successful">连接成功</string>
+    <string name="common_blue_connection_failed">连接失败</string>
+    <string name="common_blue_unsupported_model">不支持的机型</string>
+    <string name="common_blue_connection_not_successful">未连接打印机</string>
+    <string name="common_blue_no_print_data">无打印数据</string>
+    <string name="common_blue_success_print">打印完成</string>
+    <string name="common_blue_printing_ended_successfully">结束打印成功</string>
+    <string name="common_blue_printing_ended_failed">结束打印失败</string>
+    <string name="common_blue_failed_type_1">盒盖打开</string>
+    <string name="common_blue_failed_type_2">缺纸</string>
+    <string name="common_blue_failed_type_3">电量不足</string>
+    <string name="common_blue_failed_type_4">电池异常</string>
+    <string name="common_blue_failed_type_5">手动停止</string>
+    <string name="common_blue_failed_type_6">数据错误</string>
+    <string name="common_blue_failed_type_7">温度过高</string>
+    <string name="common_blue_failed_type_8">出纸异常</string>
+    <string name="common_blue_failed_type_9">正在打印</string>
+    <string name="common_blue_failed_type_10">没有检测到打印头</string>
+    <string name="common_blue_failed_type_11">环境温度过低</string>
+    <string name="common_blue_failed_type_12">打印头未锁紧</string>
+    <string name="common_blue_failed_type_13">未检测到碳带</string>
+    <string name="common_blue_failed_type_14">不匹配的碳带</string>
+    <string name="common_blue_failed_type_15">用完的碳带</string>
+    <string name="common_blue_failed_type_16">不支持的纸张类型</string>
+    <string name="common_blue_failed_type_17">纸张类型设置失败</string>
+    <string name="common_blue_failed_type_18">打印模式设置失败</string>
+    <string name="common_blue_failed_type_19">设置浓度失败</string>
+    <string name="common_blue_failed_type_20">写入rfid失败</string>
+    <string name="common_blue_failed_type_21">边距设置失败</string>
+    <string name="common_blue_failed_type_22">通讯异常</string>
+    <string name="common_blue_failed_type_23">打印机连接断开</string>
+    <string name="common_blue_failed_type_24">画板参数错误</string>
+    <string name="common_blue_failed_type_25">旋转角度错误</string>
+    <string name="common_blue_failed_type_26">json参数错误</string>
+    <string name="common_blue_failed_type_27">出纸异常(B3S)</string>
+    <string name="common_blue_failed_type_28">检查纸张类型</string>
+    <string name="common_blue_failed_type_29">RFID标签未进行写入操作</string>
+    <string name="common_blue_failed_type_30">不支持浓度设置</string>
+    <string name="common_blue_failed_type_31">不支持的打印模式</string>
+    <string name="common_blue_print_title">出清</string>
+    <string name="common_blue_print_skuName">商品名称:</string>
+    <string name="common_blue_promotion_time">促销日期:</string>
+    <string name="common_blue_print_price">折后:</string>
+    <string name="common_blue_print_meta">元</string>
+    <string name="common_blue_print_start">开始打印</string>
+    <string name="common_blue_pairing_failed">配对失败</string>
+
+</resources>

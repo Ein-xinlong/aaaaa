@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 详情页面浅色TextView Style -->
+    <style name="ValidityAdjustDetailTextLightStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/text_color_hint</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+    <!-- 详情页面条目点击item style -->
+    <style name="ValidityAdjustItemStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+    <!-- 详情条目Title Style -->
+    <style name="ValidityAdjustItemTextTitleStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/validity_adjust_text_color</item>
+        <item name="android:textSize">@dimen/text_bigger</item>
+    </style>
+
+    <!-- 详情条目Value Style -->
+    <style name="ValidityAdjustItemTextValueStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/validity_adjust_text_color</item>
+        <item name="android:textSize">@dimen/text_bigger</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="ValidityAdjustItemDividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/toolbar_divider</item>
+        <item name="android:layout_marginStart">15dp</item>
+    </style>
+</resources>

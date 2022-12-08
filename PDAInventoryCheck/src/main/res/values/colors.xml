@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="inventory_check_more">#FF4B5FE1</color>
+    <color name="inventory_check_text_blue">#FF414CCA</color>
+    <color name="inventory_check_flow_text_number_big">#252525</color>
+    <color name="inventory_check_flow_text_creator">#898989</color>
+    <color name="inventory_check_flow_text_number">#1D1F2B</color>
+    <color name="inventory_check_flow_text_bg_red">#FA3D40</color>
+    <color name="inventory_check_flow_text_red">#F93D3F</color>
+    <color name="inventory_check_flow_text_select">#161A23</color>
+    <color name="inventory_check_text_no_data">#B7B7B7</color>
+
+
+</resources>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CheckFlowStep1DataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.flow.step1.CheckFlowStep1ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/task_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/shape_bg_white_round_conner"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{@string/check_preorder_task_no + vm.taskNo}'
+                android:textColor="@color/text_color_dark"
+                android:textSize="@dimen/text_bigger"
+                tools:text="@string/check_preorder_task_no" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:text='@{@string/check_preorder_task_create_time + vm.taskCreateTime}'
+                android:textColor="@color/text_color_dark"
+                android:textSize="@dimen/text_bigger"
+                tools:text="@string/check_preorder_task_create_time" />
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@id/bottom_layout"
+            app:layout_constraintTop_toBottomOf="@id/task_num">
+
+            <com.jd.saas.pdacommon.widget.LinearRecycleView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/check_item_pre_order" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/bottom_layout"
+            app:layout_constraintTop_toBottomOf="@id/task_num">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_info"
+                android:drawablePadding="14dp"
+                android:gravity="center_horizontal"
+                android:text="@string/check_new_task_layout_no_data"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:visibility="@{vm.mContentClickable ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/check_preorder_tips"
+                android:textColor="#666"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintBottom_toTopOf="@id/tv_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_bg_button_stroke"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.goNext()}"
+                android:padding="10dp"
+                android:text="@string/check_preorder_next"
+                android:textColor="#333"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tips" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.goBack()}"
+                android:padding="10dp"
+                android:text="@string/check_preorder_back"
+                android:textColor="@color/ic_color_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_next" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

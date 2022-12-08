@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jd.saas.pdagoodsquery">
+
+    <application>
+        <activity android:name=".goods.GoodsQueryActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            />
+
+        <!-- 库存流水 -->
+        <activity android:name=".flow.GoodsQueryFlowActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+        <activity android:name=".sale.GoodsQuerySaleActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop" />
+    </application>
+
+</manifest>

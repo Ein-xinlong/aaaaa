@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CheckListTextSytle">
+        <item name="android:layout_marginBottom">13dp</item>
+        <item name="android:textSize">@dimen/text_bigger</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="CheckListTextNameSytle">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColor">@color/color_text_grey</item>
+    </style>
+
+    <!-- 盘点流程状态FrameLayout Style -->
+    <style name="CheckFlowFrameLayoutStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <!-- 盘点流程线段style -->
+    <style name="CheckFlowLineStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/toolbar_divider</item>
+    </style>
+
+    <!-- 盘点流程状态TextView Style -->
+    <style name="CheckFlowTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:drawablePadding">2dp</item>
+    </style>
+
+    <!-- 损益单字体样式1 -->
+    <style name="CheckProfitTextStyle1">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/text_color_dark</item>
+        <item name="android:textSize">@dimen/text_supper_big</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 损益单字体样式2 -->
+    <style name="CheckProfitTextStyle2">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColor">@color/text_color_hint</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <!-- 损益单字体样式3 -->
+    <style name="CheckProfitTextStyle3">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/text_color_hint</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 损益单字体样式4 -->
+    <style name="CheckProfitTextStyle4">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 损益单字体样式5 -->
+    <style name="CheckProfitTextStyle5">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="CheckSwitchStyle">
+        <item name="colorControlActivated">#4655E3</item>
+    </style>
+
+    <!-- 损益单Fragment字体边框Style -->
+    <style name="CheckProfitLinearLayoutStyle">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- 新建盘点单标题 -->
+    <style name="CheckNewTaskTextTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/text_reload_padding</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/text_color_dark</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 单选按钮 -->
+    <style name="CheckNewTaskRadioStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="background">@null</item>
+        <item name="android:drawableStart">@drawable/selector_checkbox</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textColor">@color/text_color_dark</item>
+        <item name="text_size">@dimen/text_bigger</item>
+
+    </style>
+</resources>

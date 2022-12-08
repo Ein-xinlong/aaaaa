@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".proxy.PersonalFlutterProxyActivity">
+
+    <com.jd.saas.pdacommon.toolbar.NormalTitleBar
+        android:id="@+id/flutter_proxy_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/tv_flutter_proxy_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:digits="0123456789.:"
+        android:hint="@string/personal_tv_flutter_proxy_hint"
+        android:textColor="@color/text_color_dark"
+        android:textSize="@dimen/text_normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_flutter_proxy_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/ripple_bg_button"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/personal_flutter_proxy_btn_save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_supper_bigger" />
+</LinearLayout>

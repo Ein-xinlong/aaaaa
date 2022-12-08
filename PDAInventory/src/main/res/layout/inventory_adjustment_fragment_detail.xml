@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="InventoryAdjustmentDetailDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.padinventory.adjustment.detail.InventoryAdjustmentDetailViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.jd.saas.pdacommon.widget.LinearRecycleView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_activity_common"
+                tools:context=".adjustment.detail.InventoryAdjustmentDetailActivity" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_no_data"
+                android:drawablePadding="13dp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:text="@string/inventory_adjustment_detail_list_empty"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+        </RelativeLayout>
+
+        <View style="@style/common_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_bg_button_stroke"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.onClick()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/inventory_adjustment_detail_add"
+                android:textColor="@color/inventory_adjustment_black"
+                android:textSize="@dimen/text_supper_bigger" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.commit()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/inventory_adjustment_detail_generate_submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

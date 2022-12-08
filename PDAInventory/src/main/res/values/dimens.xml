@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="inventory_textsice11">11sp</dimen>
+    <dimen name="inventory_textsice12">12sp</dimen>
+    <dimen name="inventory_textsice13">13sp</dimen>
+    <dimen name="inventory_textsice14">14sp</dimen>
+    <dimen name="inventory_textsice15">15sp</dimen>
+    <dimen name="inventory_textsice16">16sp</dimen>
+    <dimen name="inventory_textsice17">17sp</dimen>
+    <dimen name="inventory_textsice18">18sp</dimen>
+    <dimen name="inventory_textsice19">19sp</dimen>
+    <dimen name="inventory_textsice20">20sp</dimen>
+    <dimen name="inventory_textsice21">21sp</dimen>
+    <dimen name="inventory_textsice22">22sp</dimen>
+    <dimen name="inventory_textsice23">23sp</dimen>
+    <dimen name="inventory_textsice24">24sp</dimen>
+    <dimen name="inventory_textsice25">25sp</dimen>
+</resources>

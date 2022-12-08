@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="GoodsQueryDataBinding">
+
+        <import type="android.view.View" />
+        <import type="java.util.List" />
+        <import type="com.jd.saas.pdacommon.utils.DecimalUtil" />
+        <import type="com.jd.saas.pdacommon.search.SearchResultBean.Promotion" />
+        <import type="com.jd.saas.pdacommon.user.UserManager" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdagoodsquery.goods.GoodsQueryViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+        <!-- 搜索 -->
+        <LinearLayout
+            android:id="@+id/input_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_search" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:afterTextChanged="@{(e)->vm.searchContent(e)}"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/search_hint_text"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:text="@={vm.queryGoods}"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{(v)->vm.screenClick(v.getContext())}"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_screen" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/toolbar_divider" />
+
+        <!--商品列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_goodsQuery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isShowList?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/input_linearlayout" />
+        <!--  @{vm.isShowList?View.VISIBLE:View.GONE}     -->
+        <!--商品未查询到 -->
+        <!--商品信息-->
+        <!--        android:visibility="@{vm.isShowImage?View.VISIBLE:View.GONE}">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isShowImage?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_no_data"
+                android:drawablePadding="13dp"
+                android:gravity="center"
+                android:text="@string/goods_query_no_data"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/text_bigger"
+                app:layout_constraintTop_toBottomOf="@+id/input_linearlayout" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/bg_activity_common">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cy_goodsInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{vm.isShowInfo?View.VISIBLE:View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/input_linearlayout">
+                <!--                android:visibility="@{vm.isShowInfo?View.VISIBLE:View.GONE}"-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="13dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image"
+                        imageUrl="@{vm.mInfoData.logo}"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/ll_info"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintLeft_toRightOf="@id/image"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:maxEms="14"
+                            android:text="@={vm.mInfoData.skuName}"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_bigger"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/categories"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_categories"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                android:text="@{vm.mInfoData.categoryNames}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/encoding"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_encoding"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.mInfoData.skuId}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/barcode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_barcode"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{vm.mInfoData.upcCode.split(@string/goods_query_split)[0]}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/shape_bg_copy"
+                                android:onClick="@{(v)->vm.more(v)}"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="3dp"
+                                android:text="@string/goods_query_look_more"
+                                android:textColor="@color/goods_query_more"
+                                android:textSize="@dimen/text_normal"
+                                android:visibility="@{vm.mInfoData.upcCode.split(@string/goods_query_split).length&gt;1?View.VISIBLE:View.INVISIBLE}" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="2dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_type"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_toEndOf="@+id/tv_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.mInfoData.productTypeName}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_toStartOf="@+id/tv_mode_desc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_style"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_mode_desc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.mInfoData.saleModeDesc}"
+                                android:textColor="@color/color_text_black"
+                                android:layout_alignParentEnd="true"
+                                android:textSize="@dimen/text_normal" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_rack_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_rack"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_toEndOf="@+id/tv_rack_title"
+                                android:text="@{vm.mInfoData.goodsShelves == 0 ? @string/goods_query_no_info : vm.mInfoData.goodsShelves + vm.mInfoData.goodsShelvesUnitDesc}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_toStartOf="@+id/tv_shelf_life"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_Shelf_life"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_shelf_life"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:text="@{vm.mInfoData.shelfLife==0?@string/goods_query_no_info:vm.mInfoData.shelfLife + vm.mInfoData.shelfLifeUnitDesc}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_selling_price"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{DecimalUtil.formatToDouble(vm.mInfoData.basePrice) + @string/goods_query_unit_money + vm.mInfoData.saleUnitName}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- 供货方信息 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/supplier_cons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="7dp"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_title">
+
+                    <LinearLayout
+                        android:id="@+id/ll_supply"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_supplier"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.mInfoData.supplierName}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_encoding"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal"
+                                app:layout_constraintRight_toLeftOf="@id/supplier_encoding"
+                                app:layout_constraintTop_toTopOf="@id/supplier_encoding" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/supplier_encoding"
+                                style="@style/GoodsQueryCycleStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{vm.mInfoData.supplierCode}"
+                                android:textColor="@color/color_text_black"
+                                app:layout_constraintBottom_toBottomOf="@+id/supplier_title"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintLeft_toRightOf="@id/supplier_title"
+                                app:layout_constraintTop_toTopOf="@+id/supplier_title" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/goods_query_Purchase_price"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/GoodsQueryCycleStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{UserManager.getInstance().getUserData().getUserTenantConfigBean().isShowPurchasePrice() ? DecimalUtil.formatToDouble(vm.mInfoData.supplyPrice) : @string/goods_query_purchase_price_hidden}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{@string/goods_query_unit_money+vm.mInfoData.saleUnitName}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    app:layout_constraintTop_toBottomOf="@+id/supplier_cons">
+
+                    <LinearLayout
+                        android:id="@+id/ll_stock_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_stock_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="19dp"
+                            android:text="@string/goods_query_total"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_bigger"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{vm.mInfoData.totalQty}"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_supper_big" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_stock_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/goods_query_on"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_bigger"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{vm.mInfoData.storeOnWayStock}"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_supper_big" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:onClick="@{(v)->vm.onLookFlow()}"
+                            android:text="@string/goods_query_look_flow"
+                            android:textColor="@color/goods_query_more"
+                            android:textSize="@dimen/text_big"
+                            android:visibility="@{null!=vm.mInfoData.totalQty?View.VISIBLE:View.GONE}" />
+                    </LinearLayout>
+                    <!--                    android:visibility="@{null!=vm.mInfoData.totalQty?View.VISIBLE:View.GONE}"-->
+                    <View
+                        android:id="@+id/viewstock"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/goods_query_view"
+                        app:layout_constraintBottom_toTopOf="@+id/ll_stock"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_stock_total" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_stock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewstock">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{vm.mInfoData.goodQty==null?@string/goods_query_cut:vm.mInfoData.goodQty}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_supper_big"
+                                android:textStyle="bold"
+                                tools:ignore="NestedWeights" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/goods_query_good"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/goods_query_view" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{vm.mInfoData.nonGoodQty==null?@string/goods_query_cut:vm.mInfoData.nonGoodQty}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_supper_big"
+                                android:textStyle="bold"
+                                tools:ignore="NestedWeights" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/goods_query_bad"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/goods_query_view" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{null!=vm.mInfoData.stockLowerLimit?vm.mInfoData.stockLowerLimit:@string/goods_query_cut}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_supper_big"
+                                android:textStyle="bold"
+                                tools:ignore="NestedWeights" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/goods_query_stock_lower"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/goods_query_view" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{vm.mInfoData.stockUpperLimit==null?@string/goods_query_cut:vm.mInfoData.stockUpperLimit}"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_supper_big"
+                                android:textStyle="bold"
+                                tools:ignore="NestedWeights" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/goods_query_stock_upper"
+                                android:textColor="@color/color_text_grey"
+                                android:textSize="@dimen/text_normal" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="7dp"
+                    app:layout_constraintTop_toBottomOf="@id/cl_stock">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_cycle_name"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_cycle"
+                        android:textColor="@color/color_text_grey"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_cycle_value"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.mInfoData.lifeCycleDesc}"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_cycle_name"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_sale_name"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_sale_name"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_status_sale"
+                        android:textColor="@color/color_text_grey"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_cycle_value"
+                        app:layout_constraintRight_toLeftOf="@id/tv_sale_value"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_sale_value"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.mInfoData.isSellDesc}"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_sale_name"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_order_name"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/goods_query_status_order"
+                        android:textColor="@color/color_text_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cycle_name" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_order_value"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.mInfoData.isBookDesc}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tv_order_name"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_order_name"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_sale_name"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_return_name"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goods_query_status_return"
+                        android:textColor="@color/color_text_grey"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tv_order_value"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_return_value"
+                        app:layout_constraintRight_toLeftOf="@id/tv_order_value"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_return_value"
+                        style="@style/GoodsQueryCycleStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.mInfoData.isRetreatDesc}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tv_return_name"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_return_name"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--促销信息 -->
+                <LinearLayout
+                    android:id="@+id/Promotion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_status">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="7dp"
+                        android:text="@string/goods_query_Promotional_Information"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/text_bigger"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:drawableTop="@drawable/ic_no_info"
+                        android:gravity="center_horizontal"
+                        android:text="@string/goods_query_moment_no"
+                        android:textColor="@color/goods_query_text"
+                        android:textSize="13sp"
+                        android:visibility="@{vm.promotions.size()==0 ? View.VISIBLE:View.GONE}" />
+
+                    <View
+                        android:id="@+id/Promotion_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/goods_query_view"
+                        android:visibility="@{vm.promotions.size()==0 ? View.GONE:View.VISIBLE}"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvPromotion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="@{vm.promotions.size()==0?View.GONE:View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Promotion_view" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/morePromotion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:onClick="@{(e)->vm.onLookMore(e)}"
+                        android:paddingBottom="10dp"
+                        android:text="@{vm.isShowLook?@string/goods_query_promotion_more:@string/goods_query_promotion_up}"
+                        android:textColor="@color/goods_query_more"
+                        android:visibility="@{vm.promotions.size() &lt;= 2 ? View.GONE:View.VISIBLE}" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="@{vm.isShowInfo?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.goStockSale()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/goods_query_look_sale"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

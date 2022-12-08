@@ -1,0 +1,19 @@
+<resources>
+    <string name="login_choose_company_title">请选择企业</string>
+    <string name="login_login_btn_text">登录</string>
+    <string name="login_count">请输入账号/手机号</string>
+    <string name="login_count_hint">账号/手机号</string>
+    <string name="login_phone_num">手机号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login_phone_num_please">请输入手机号</string>
+    <string name="login_code">请输入验证码</string>
+    <string name="login_ing">登录中…</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_fail">登录失败</string>
+    <string name="login_company_empty">没有获取到企业信息</string>
+    <string name="login_login_by_code">验证码登录</string>
+    <string name="login_login_by_password">账号密码登录</string>
+    <string name="login_sending_code">发送验证码</string>
+    <string name="login_sending_code_success">验证码已发送！</string>
+    <string name="login_sending_code_retry">s后重新发送</string>
+</resources>

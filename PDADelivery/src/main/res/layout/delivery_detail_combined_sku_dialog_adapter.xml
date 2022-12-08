@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdadelivery.detail.bean.DeliveryBoxProductBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_sku_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.skuName}"
+            android:textColor="@color/color_text_black"
+            app:layout_constraintEnd_toStartOf="@+id/tv_box_num_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="商品名称" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_box_num_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_box_num_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_sku_name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_box_num" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_box_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.boxNumStr}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_sku_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="8" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_barcode_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_barcode"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_barcode"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sku_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_barcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.upcCode}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_barcode_label"
+            app:layout_constraintEnd_toStartOf="@+id/tv_input_qty_label"
+            app:layout_constraintHorizontal_weight="7"
+            app:layout_constraintStart_toEndOf="@+id/tv_barcode_label"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_input_qty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_input_qty_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_barcode_label"
+            app:layout_constraintEnd_toStartOf="@+id/tv_input_qty"
+            app:layout_constraintStart_toEndOf="@+id/tv_barcode" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_input_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.inputQtyStr}"
+            android:textColor="@color/delivery_detail_red"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_barcode_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintStart_toEndOf="@+id/tv_input_qty_label"
+            tools:text="8" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_send_qty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_send_qty_label"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_barcode_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_send_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.expectedQtyStr}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_send_qty_label"
+            app:layout_constraintEnd_toEndOf="@+id/tv_barcode"
+            app:layout_constraintStart_toEndOf="@+id/tv_send_qty_label"
+            tools:text="12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_unreceived_qty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_unreceived_qty_label"
+            android:textColor="@color/color_text_grey"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_send_qty_label"
+            app:layout_constraintStart_toStartOf="@+id/tv_input_qty_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_unreceived_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.unreceivedQtyStr}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_send_qty_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_unreceived_qty_label"
+            tools:text="12" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

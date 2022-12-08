@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jd.saas.pdapersonal">
+    <application>
+
+        <!-- 隐私协议 -->
+        <!-- 个人中心 -->
+        <activity
+            android:name=".home.PersonalHomeActivity"
+            android:theme="@style/TranslucentTheme"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"/>
+        <!-- 切换租户 -->
+        <activity
+            android:name=".exchange.PersonalCompanyExchangeActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"/>
+        <!-- 设置Flutter网路代理 -->
+        <activity
+            android:name=".proxy.PersonalFlutterProxyActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"/>
+        <!-- 切换门店 -->
+        <activity
+            android:name=".store.PersonalStoreActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"/>
+    </application>
+
+</manifest>

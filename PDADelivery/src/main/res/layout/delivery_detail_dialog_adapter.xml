@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="DetailDialogItemDataBinding">
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdadelivery.detail.bean.DeliveryShelfLifeInfoBean" />
+
+        <variable
+            name="onPlusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onMinusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onAddItemClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onRemoveItemClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSelectProductDate"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSelectStockClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="afterTextChange"
+            type="androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/delivery_detail_bg_gery"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/produce"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{onSelectProductDate}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/delivery_detail_Produce_data"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_bigger" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_arrow_right_dark" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toStartOf="@id/dark"
+                    android:ellipsize="end"
+                    android:hint="@string/delivery_detail_please_choose"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{bean.createDateStr}"
+                    android:textColor="@color/color_text_grey"
+                    android:textColorHint="@color/color_text_grey"
+                    android:textSize="@dimen/text_bigger" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="19dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{bean.expiryTips}"
+                    android:textColor="@color/delivery_detail_red"
+                    android:textSize="@dimen/text_small" />
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider"
+                android:layout_marginHorizontal="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{onSelectStockClick}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/delivery_detail_storage"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_bigger" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/dark2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_arrow_right_dark" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toStartOf="@id/dark2"
+                    android:ellipsize="end"
+                    android:hint="@string/delivery_detail_please_choose"
+                    android:maxLines="1"
+
+                    android:singleLine="true"
+                    android:text="@{bean.locName}"
+                    android:textColor="@color/color_text_grey"
+                    android:textColorHint="@color/color_text_grey"
+                    android:textSize="@dimen/text_bigger" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider"
+                android:layout_marginHorizontal="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/delivery_detail_Warehousing"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_bigger" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="19dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="@{onMinusClick}"
+                        app:srcCompat="@drawable/ic_reduce" />
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_input"
+                        android:layout_width="56dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="7dp"
+                        android:afterTextChanged="@{afterTextChange}"
+                        android:background="@drawable/delivery_shape_rectangle_fff"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true"
+                        android:text="@{bean.inputQtyStr}"
+                        android:textColor="@color/delivery_detail_text_color"
+                        android:textColorHint="@color/delivery_detail_text_color"
+                        android:textSize="@dimen/text_supper_big" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="@{onPlusClick}"
+                        app:srcCompat="@drawable/ic_add" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/item_layout">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/shape_bg_copy"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:onClick="@{onRemoveItemClick}"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="6dp"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_delete"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/delete"
+                android:background="@drawable/shape_bg_copy"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:onClick="@{onAddItemClick}"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="6dp"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_add"
+                android:textColor="#FF4B5FE1"
+                android:textSize="@dimen/text_normal" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

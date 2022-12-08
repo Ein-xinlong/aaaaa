@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.jd.saas.pdacommon.date.DateUtils"/>
+        <variable
+            name="bean"
+            type="com.jd.saas.pdagoodsquery.sale.model.GoodsQuerySale" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/shape_color_blue"
+                android:textSize="@dimen/text_normal"
+                android:gravity="center"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/tv_actual_qty_label"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.week}"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="@+id/tv_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_actual_qty_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.skuNum}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_bigger"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_week"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/tv_date"
+            app:layout_constraintRight_toLeftOf="@+id/tv_actual_qty"
+            app:layout_constraintTop_toTopOf="@+id/tv_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_actual_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.stock}"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_bigger"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_week"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/tv_actual_qty_label"
+            app:layout_constraintRight_toLeftOf="@+id/iv_arrow"
+            app:layout_constraintTop_toTopOf="@+id/tv_date" />
+
+        <LinearLayout
+            android:id="@+id/ll_inNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_inNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.purchaseNum}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_week"
+                app:layout_constraintLeft_toRightOf="@+id/tv_actual_qty"
+                app:layout_constraintRight_toLeftOf="@+id/iv_arrow"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_date" />
+            <ImageView
+                android:id="@+id/iv_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_down_dark"
+                android:layout_marginStart="3dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

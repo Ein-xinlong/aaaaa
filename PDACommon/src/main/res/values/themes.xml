@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- 默认主题，亮色 -->
+    <style name="Theme.Pda" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_light</item>
+        <item name="colorPrimaryDark">@color/theme_light</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:navigationBarColor">@color/color_navigationBar_android5</item>
+        <item name="android:statusBarColor">@color/color_statusBar</item>
+        <item name="android:windowBackground">@color/color_windowBackground</item>
+    </style>
+    <!-- flutter activity theme -->
+    <style name="FlutterTheme" parent="Theme.Pda">
+        <item name="android:navigationBarColor">@color/color_navigationBar_android5</item>
+    </style>
+</resources>

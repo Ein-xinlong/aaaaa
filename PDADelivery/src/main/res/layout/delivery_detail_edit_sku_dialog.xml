@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdadelivery.detail.bean.DeliverySkuBean" />
+
+        <variable
+            name="locName"
+            type="java.lang.String" />
+
+        <variable
+            name="inputQtyStr"
+            type="java.lang.String" />
+
+        <variable
+            name="onUpcMoreClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onPlusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onMinusClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onCloseClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSelectStockClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onEnsureClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_bottomsheet">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/delivery_detail_Acceptance"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_supper_big"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:onClick="@{onCloseClick}"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            imageUrl="@{bean.logo}"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_unit_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sku_name"
+            tools:background="#2196F3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_sku_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:shadowRadius="3.0"
+            android:singleLine="true"
+            android:text="@{bean.skuName}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_logo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="商品名称商品名称西瓜切块" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_upc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_barcode"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toStartOf="@id/tv_sku_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_sku_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.upcCode}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_upc_label"
+            app:layout_constraintStart_toEndOf="@id/tv_upc_label"
+            tools:text="735466432367" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/shape_bg_copy"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="@{onUpcMoreClick}"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_look_more"
+            android:textColor="#FF4B5FE1"
+            android:visibility="@{bean.upcMoreBtnVisibility}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_upc_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_upc_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_unit_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/delivery_detail_specification"
+            android:textColor="@color/color_text_grey"
+            app:layout_constraintLeft_toLeftOf="@id/tv_upc_label"
+            app:layout_constraintTop_toBottomOf="@id/tv_upc_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.uom}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_unit_label"
+            app:layout_constraintStart_toEndOf="@id/tv_unit_label"
+            tools:text="盒" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_num_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/delivery_detail_bg_gery"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_unit_label">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_expected_qty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_send_qty_label"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{bean.expectedQtyStr}"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_expected_qty_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_expected_qty_label"
+                tools:text="45" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_unreceived_qty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_unreceived_qty_label"
+                android:textColor="@color/color_text_grey"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_expected_qty_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_expected_qty_label" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{bean.unreceivedQtyStr}"
+                android:textColor="@color/delivery_detail_red"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_expected_qty_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_unreceived_qty_label"
+                tools:text="12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:onClick="@{onSelectStockClick}"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_num_info">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_storage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="20dp"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_storage"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_storage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_arrow_right_dark"
+                android:drawablePadding="8dp"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:hint="@string/delivery_detail_please_choose"
+                android:maxLines="1"
+                android:padding="20dp"
+                android:singleLine="true"
+                android:text="@{locName}"
+                android:textColor="@color/color_text_grey"
+                android:textColorHint="@color/color_text_grey"
+                android:textSize="@dimen/text_bigger" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/line"
+            style="@style/common_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_loc" />
+
+        <LinearLayout
+            android:id="@+id/layout_actual_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_actual_qty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/delivery_detail_Warehousing_number"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_bigger"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{@string/delivery_detail_combined_input(bean.getCombinedInputQtyStr)}"
+                android:textColor="@color/color_text_grey"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{bean.combinedInputQtyLayoutVisibility}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line"
+                tools:text="@string/delivery_detail_combined_input" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{onPlusClick}"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_actual_qty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/layout_actual_qty"
+            app:srcCompat="@drawable/ic_add" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_actual_qty"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/shape_bg_num_input"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:selectAllOnFocus="true"
+            android:text="@{inputQtyStr}"
+            android:textColor="@color/delivery_detail_text_color"
+            android:textColorHint="@color/delivery_detail_text_color"
+            android:textSize="@dimen/text_supper_big"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_actual_qty"
+            app:layout_constraintEnd_toStartOf="@+id/add_image"
+            app:layout_constraintTop_toTopOf="@+id/layout_actual_qty"
+            app:layout_goneMarginEnd="20dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_reduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{onMinusClick}"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_actual_qty"
+            app:layout_constraintEnd_toStartOf="@+id/et_actual_qty"
+            app:layout_constraintTop_toTopOf="@+id/layout_actual_qty"
+            app:srcCompat="@drawable/ic_reduce" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_actual_qty">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sure_button"
+                style="@style/DeliveryBottomButton"
+                android:onClick="@{onEnsureClick}"
+                android:text="@string/delivery_detail_sure" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

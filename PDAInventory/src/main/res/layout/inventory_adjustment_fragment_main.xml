@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="InventoryAdjustmentDataBinding">
+
+        <variable
+            name="adjustment"
+            type="com.jd.saas.padinventory.adjustment.InventoryAdjustmentViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_bg_card_global"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/oddnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/inventory_textsice20"
+                    android:layout_marginTop="@dimen/inventory_textsice15"
+                    android:text="@string/inventory_adjustment_odd_number"
+                    android:textColor="@color/inventory_adjustment_black"
+                    android:textSize="@dimen/inventory_textsice16"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/toolbar_divider"
+                    app:layout_constraintTop_toBottomOf="@id/oddnumber" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:longClickable="true"
+                    android:text="@{adjustment.mOddNumber}"
+                    android:textColor="@color/inventory_adjustment_black"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/inventory_textsice16"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/oddnumber"
+                    app:layout_constraintTop_toTopOf="@id/oddnumber" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/applicant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/inventory_adjustment_applicant"
+                    android:textColor="@color/inventory_adjustment_applicant"
+                    android:textSize="@dimen/inventory_textsice14"
+                    app:layout_constraintLeft_toLeftOf="@id/oddnumber"
+                    app:layout_constraintTop_toBottomOf="@id/oddnumber" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{adjustment.mApplyName}"
+                    android:textColor="@color/inventory_adjustment_black"
+                    android:textSize="@dimen/inventory_textsice14"
+                    app:layout_constraintLeft_toRightOf="@id/applicant"
+                    app:layout_constraintTop_toTopOf="@id/applicant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/apply_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/inventory_adjustment_apply_time"
+                    android:textColor="@color/inventory_adjustment_applicant"
+                    android:textSize="@dimen/inventory_textsice14"
+                    app:layout_constraintLeft_toLeftOf="@id/applicant"
+                    app:layout_constraintTop_toBottomOf="@id/applicant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{adjustment.mApplyTime}"
+                    android:textColor="@color/inventory_adjustment_black"
+                    android:textSize="@dimen/inventory_textsice14"
+                    app:layout_constraintLeft_toRightOf="@id/apply_time"
+                    app:layout_constraintTop_toTopOf="@id/apply_time" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="13dp"
+                    android:src="@{adjustment.mForty? @drawable/inventory_adjustment_audit_via: adjustment.mFifty?@drawable/inventory_adjustment_audit_audit:@drawable/inventory_adjustment_audit_reject}"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bg_white_round_conner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/status">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/inventory_textsice20"
+                    android:layout_marginTop="15dp"
+                    android:shadowRadius="3.0"
+                    android:text="@string/inventory_create_shop_message"
+                    android:textColor="@color/inventory_adjustment_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/toolbar_divider"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/view"
+                    tools:listitem="@layout/inventory_adjustment_item" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

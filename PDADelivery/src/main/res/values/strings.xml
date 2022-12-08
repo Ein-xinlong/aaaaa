@@ -1,0 +1,133 @@
+<resources>
+    <string name="delivery_name">按单据收货</string>
+    <string name="delivery_collected">已收齐：</string>
+    <string name="delivery_unreceive">未收货：</string>
+    <string name="delivery_uncollect">未收齐：</string>
+    <string name="delivery_direct_send">直送单：</string>
+    <string name="delivery_send">配送单</string>
+    <string name="delivery_asn_type_all">全部</string>
+    <string name="delivery_direct">直送单</string>
+    <string name="delivery_purchase">采购单</string>
+    <string name="delivery_allot">调拨单</string>
+    <string name="delivery_return">退仓单</string>
+    <string name="delivery_user_return">用户退货单</string>
+    <string name="delivery_reject">配送拒收单</string>
+    <string name="delivery_income_difference">收货差异单</string>
+    <string name="delivery_type">入库类型</string>
+    <string name="delivery_select_time">请选择时间</string>
+    <string name="delivery_time_scope">时间范围</string>
+    <string name="delivery_click_select">点击选择</string>
+    <string name="delivery_continue">继续收货</string>
+    <string name="delivery_details">查看详情</string>
+    <string name="delivery_receive">去收货</string>
+    <string name="delivery_category">实发商品种类：</string>
+    <string name="delivery_supply">供货方：</string>
+    <string name="delivery_principal">负责人：</string>
+    <string name="delivery_create_time">创建时间：</string>
+    <string name="delivery_operation_time">最后操作时间：</string>
+    <string name="delivery_list_search_hint">请输入单据号/商品编码/商品条码</string>
+    <string name="delivery_search_hint">请输入商品名称/商品编码</string>
+    <string name="delivery_no_data">暂无数据</string>
+    <string name="delivery_colon">：</string>
+    <string name="delivery_certain">确定</string>
+    <string name="delivery_reset">重置</string>
+
+    <string name="delivery_detail_title">入库单明细</string>
+    <string name="delivery_detail_receipt_text">收货单号：</string>
+    <string name="delivery_detail_supplier">供货方：</string>
+    <string name="delivery_detail_create_time">创建时间：</string>
+    <string name="delivery_detail_finish_time">完成时间：</string>
+    <string name="delivery_detail_receipt_kind">收货商品种类：</string>
+    <string name="delivery_detail_receipt_number">收货商品数量：</string>
+    <string name="delivery_detail_shop_kind">实发商品种类：</string>
+    <string name="delivery_detail_shop_number">实发商品数量：</string>
+    <string name="delivery_detail_barcode">条码：</string>
+    <string name="delivery_detail_specification">单位：</string>
+    <string name="delivery_detail_send_qty_label">发货数量：</string>
+    <string name="delivery_detail_unreceived_qty_label">待收数量：</string>
+    <string name="delivery_detail_input_qty_label">本次收货：</string>
+    <string name="delivery_detail_stock_type_label">库位：</string>
+    <string name="delivery_detail_unselect_stock_type">未选择</string>
+    <string name="delivery_detail_expected_qty_label">订货数量：</string>
+    <string name="delivery_detail_actual_qty_label">实收数量：</string>
+    <string name="delivery_detail_look_detail">查看明细</string>
+    <string name="delivery_detail_hint_text">请输入商品条码/商品编码</string>
+    <string name="delivery_detail_commit_detail">提交收货</string>
+    <string name="delivery_detail_sure">确定</string>
+    <string name="delivery_detail_Warehousing_number">入库数量</string>
+    <string name="delivery_detail_Warehousing">入库数量</string>
+    <string name="delivery_detail_this_cause">本次收货总数：</string>
+    <string name="delivery_detail_shelf_life">保质期：</string>
+    <string name="delivery_detail_look_more">查看更多</string>
+    <string name="delivery_detail_Acceptance">验收商品</string>
+    <string name="delivery_detail_add">增加</string>
+    <string name="delivery_detail_delete">删除</string>
+    <string name="delivery_detail_storage">库位</string>
+    <string name="delivery_detail_Produce_data">生产日期</string>
+    <string name="delivery_detail_please_choose">请选择</string>
+    <string name="delivery_detail_expiry_state_4_tip">您录入的商品已过期，请仔细核对生产日期</string>
+    <string name="delivery_detail_expiry_state_3_tip">您录入的商品已达到预警值，请仔细核对生产日期</string>
+    <string name="delivery_detail_expiry_state_2_tip">您录入的商品已达到提示值，请仔细核对生产日期</string>
+    <string name="delivery_detail_dialog_title">验收效期商品</string>
+    <string name="delivery_detail_storage1">库位1</string>
+    <string name="delivery_detail_choose_storage">选择库位</string>
+
+    <string name="delivery_status_initial">待收货</string>
+    <string name="delivery_status_receiving">收货中</string>
+    <string name="delivery_status_received">已完成</string>
+
+    <string name="delivery_finish">关单</string>
+    <string name="delivery_print">打印</string>
+    <string name="delivery_fold">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;收起</string>
+    <string name="delivery_edit">修改</string>
+    <string name="delivery_time_range">%s 至 %s</string>
+    <string name="delivery_received_sku_kinds">本次收货种类：</string>
+    <string name="delivery_received_sku_cnt">本次收货数量：</string>
+
+
+
+    <string name="delivery_input_qty_more_than_limit">收货数量不能超过超收比例</string>
+    <string name="delivery_input_qty_less_than_zero">收货数量不能小于0</string>
+    <string name="delivery_input_qty_less_than_or_equal_zero">收货数量不能小于等于0</string>
+    <string name="delivery_input_loc_tips">选择库位类型</string>
+    <string name="delivery_submit_empty_tips">提交收货信息不能为空</string>
+    <string name="delivery_shelf_life_sku">效期商品</string>
+    <string name="delivery_has_no_search_result">暂无搜索结果~~</string>
+
+    <string name="delivery_input_create_date_empty_tips">生产日期不能为空</string>
+    <string name="delivery_submit_success_tips">提交成功</string>
+    <string name="delivery_close_success_tips">关单成功</string>
+    <string name="delivery_dialog_ensure_close_tips">确定要关单吗？</string>
+    <string name="delivery_same_shelf_life_info_tips">已存在相同效期信息</string>
+    <string name="delivery_submit_list_not_empty_tips">有未提交的收货记录\n是否继续退出？</string>
+
+    <string name="delivery_search_result_empty">本单中未找到符合条件的商品</string>
+    <string name="delivery_diff">收货差异</string>
+    <string name="delivery_diff_warn">以下商品入库数量与发货出库数量不一致，请确认</string>
+    <string name="delivery_diff_ensure">确定关单</string>
+    <string name="delivery_diff_reason">备注原因</string>
+    <string name="delivery_diff_expected_label">发货：</string>
+    <string name="delivery_diff_actual_label">入库：</string>
+    <string name="delivery_diff_unreceived_label">未收：</string>
+    <string name="delivery_diff_over_received_label">超收：</string>
+    <string name="delivery_diff_select_reason_dialog_title">选择原因</string>
+    <string name="delivery_select_delivery_type_tips">请选择入库类型</string>
+
+    <string name="delivery_query_selectable_diff_unreceived_reason_error_tips">没有可选的缺收原因</string>
+    <string name="delivery_query_selectable_diff_over_received_reason_error_tips">没有可选的超收原因</string>
+
+    <string name="delivery_query_loc_error_tips">未查询到可选库位</string>
+
+    <string name="delivery_list_tab_type_single">查看单品</string>
+    <string name="delivery_list_tab_type_combined">查看已收组合商品</string>
+
+    <string name="delivery_detail_box_num_label">组合系数：</string>
+    <string name="delivery_detail_combined_input">%s (组合商品收货)</string>
+    <string name="delivery_detail_not_support_shelf_life_combined_sku">暂不支持效期组合商品的收货</string>
+    <string name="delivery_detail_not_support_shelf_life_in_combined_sku">该组合商品下存在效期商品，请按照最小规格商品进行效期录入</string>
+    <string name="delivery_detail_not_contain_combined_sku">入库单下无此组合商品</string>
+
+    <string name="delivery_detail_one_key_fill">一键收货</string>
+    <string name="delivery_detail_shelf_life_one_key_fill_tips">效期商品需手动收货</string>
+    <string name="delivery_detail_cancel_hint">保质期单位将自动转换为天进行计算，年转换为365天，月转换为30天，小时转换为天后四舍五入</string>
+</resources>

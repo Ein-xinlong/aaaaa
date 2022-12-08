@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="CheckNewTaskDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.jd.saas.pdacheck.newtask.CheckNewTaskViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity_common"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckNewTaskTextTitle"
+                        android:text="@string/check_new_task_predict_check_time" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/ripple_oval_dark"
+                        android:drawableStart="@drawable/ic_calendar"
+                        android:drawablePadding="10dp"
+                        android:maxLines="1"
+                        android:enabled="@{vm.isEnabled}"
+                        android:onClick="@{(v)->vm.dateSelect(v)}"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="@{vm.mDate}"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckNewTaskTextTitle"
+                        android:text="@string/check_new_task_check_scope" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/text_reload_padding">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/scope_left"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.scopeStatus==1?true:false}"
+                            android:onClick="@{(v)->vm.checkScopeSelect(1,v)}"
+                            android:text="@string/check_new_task_integer_inventory" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/scope_right"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.scopeStatus==2?true:false}"
+                            android:onClick="@{(v)->vm.checkScopeSelect(2,v)}"
+                            android:text="@string/check_new_task_assign_category" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckNewTaskTextTitle"
+                        android:text="@string/check_new_task_whether_show_inventory" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/text_reload_padding">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/isShow"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.showInventoryStatus==1?true:false}"
+                            android:onClick="@{(v)->vm.isShowInventorySelect(true)}"
+                            android:text="@string/check_new_task_inventory_show" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/isNotShow"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.showInventoryStatus==2?true:false}"
+                            android:onClick="@{(v)->vm.isShowInventorySelect(false)}"
+                            android:text="@string/check_new_task_inventory_not_show" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_bg_card_global"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/CheckNewTaskTextTitle"
+                        android:text="@string/check_new_task_finish_shop_null" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/text_reload_padding">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/zero"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.finishCheckStatus==1?true:false}"
+                            android:onClick="@{(v)->vm.finishCheckSelect(0)}"
+                            android:text="@string/check_new_task_default_zero" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/at_present"
+                            style="@style/CheckNewTaskRadioStyle"
+                            android:button="@null"
+                            android:enabled="@{vm.isEnabled}"
+                            android:checked="@{vm.finishCheckStatus==2?true:false}"
+                            android:onClick="@{(v)->vm.finishCheckSelect(1)}"
+                            android:paddingTop="10dp"
+                            android:text="@string/check_new_task_default_inventory" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View style="@style/common_divider" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="@{vm.createOrSave==0?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.createTask()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_new_task_create_task"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="@{vm.createOrSave==1?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_bg_button_stroke"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.cancelTask(v)}"
+                android:padding="10dp"
+                android:text="@string/check_new_task_cancellation_task"
+                android:textColor="#333"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:visibility="@{vm.isEnabled?View.VISIBLE:View.GONE}"
+                android:background="@drawable/ripple_bg_button"
+                android:gravity="center"
+                android:onClick="@{(v)->vm.saveTask()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/check_new_task_save_task"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_supper_bigger" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>

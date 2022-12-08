@@ -1,0 +1,12 @@
+include ':PDAInventoryCheck'
+include ':PDAGoodsQuery'
+include ':PDACheck'
+include ':PDAInventory'
+include ':PDAValidity'
+include ':PDAMain'
+include ':PDACommon'
+include ':PDALogin'
+include ':PDAPersonal'
+include ':app'
+rootProject.name = "pda"
+include ':PDADelivery'

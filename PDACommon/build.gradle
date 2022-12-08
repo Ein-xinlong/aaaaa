@@ -1,0 +1,114 @@
+apply plugin: 'com.android.library'
+apply plugin: 'shooter-perf'
+apply plugin: 'jdrouter'
+
+android {
+    compileSdkVersion rootProject.ext.buildConfig.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.buildConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.buildConfig.targetSdkVersion
+        versionCode rootProject.ext.buildConfig.versionCode
+        versionName rootProject.ext.buildConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = ["JDROUTER_MODULE_NAME": "PDACommon"]
+            }
+        }
+    }
+    def StringOf = { str -> "\"$str\"" }
+    def RD_HOST = StringOf("https://pda-gw-omo.selling.cn")
+    def RD_PRE_HOST = StringOf("http://11.18.41.229")
+    def RD_DEV_HOST = StringOf("https://pre-pda-gw-omo.selling.cn")
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //配置阿凡达AppKey
+            buildConfigField "String", "AVATER_APP_KEY", StringOf("cddb4e792c2e4e8291eef537c7490fa0")
+            //配置阿凡达AppSecret
+            buildConfigField "String", "AVATER_APP_SECRET", StringOf("d068d03bea1af8dbec5640e45ed1effd")
+            //配置阿凡达AppKey
+            buildConfigField "String", "AVATER_APP_CANG_KEY", StringOf("d96f967ed9a74e8e8b374fa7ff9b212c")
+            //配置阿凡达AppSecret
+            buildConfigField "String", "AVATER_APP_CANG_SECRET", StringOf("f81b6c4870a736c25e4385842c446bc9")
+            //配置阿凡达子午线系统——app站点编号site_id
+            buildConfigField "String", "AVATER_MARK_SITE_ID", StringOf("JA2021_3833857")
+            //配置正式环境域名
+            buildConfigField "String", "API_HOST", RD_HOST
+        }
+        debug {
+            //配置阿凡达AppKey
+            buildConfigField "String", "AVATER_APP_KEY", StringOf("ba3871b83a77460883d445354cc336fc")
+            //配置阿凡达AppSecret
+            buildConfigField "String", "AVATER_APP_SECRET", StringOf("c91cc1663677706235dc7dc482409b35")
+            //配置阿凡达AppKey
+            buildConfigField "String", "AVATER_APP_CANG_KEY", StringOf("1de4a3c68b544fcea2083fb4767a8a37")
+            //配置阿凡达AppSecret
+            buildConfigField "String", "AVATER_APP_CANG_SECRET", StringOf("57ff8cd32777ff5fd18a6dfa405ee98d")
+            //配置阿凡达子午线系统——app站点编号site_id
+            buildConfigField "String", "AVATER_MARK_SITE_ID", StringOf("JA2021_3833857")
+            //配置预发环境域名
+            buildConfigField "String", "API_HOST", RD_DEV_HOST
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // 数据绑定
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    // android依赖
+    api rootProject.ext.androidx["appcompat"]
+    api rootProject.ext.androidx["material"]
+    api rootProject.ext.androidx["constraintlayout"]
+    api rootProject.ext.androidx["lifecycle-viewmodel"]
+    api rootProject.ext.androidx["lifecycle-livedata"]
+    api rootProject.ext.androidx["lifecycle-common"]
+    api rootProject.ext.androidx["lifecycle-process"]
+    api rootProject.ext.androidx["paging"]
+    api rootProject.ext.androidx["refreshLayout"]
+
+    // 三方依赖
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttpLoggingInterceptor"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofitAdapterRxjava2"]
+    api rootProject.ext.dependencies["retrofitAonverterGson"]
+    api rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["capture"]//摄像头扫码
+    annotationProcessor rootProject.ext.dependencies["glideCompiler"]
+    api rootProject.ext.dependencies["grantor"]// 权限依赖
+    api files('lib/printer_urovo_v3.0.0416.jar')// 打印机Urovo品牌
+    api rootProject.ext.dependencies["eventBus"]
+    implementation rootProject.ext.dependencies["guavaConflict"]//去除依赖冲突
+    api files('lib/nimbot-3.1.6-release.aar')// 蓝牙打印机
+    api files('lib/nimbot-image-2.0.10-release.aar')// 蓝牙打印机
+
+    // 京东依赖
+    api rootProject.ext.jd_dependencies["jdRouter"]
+    api rootProject.ext.jd_dependencies["EasyAnalytics"]
+    implementation rootProject.ext.jd_dependencies["jdUpgrade"]
+    implementation rootProject.ext.jd_dependencies["JDCrashReport"]
+    implementation rootProject.ext.jd_dependencies["operationSdk"]
+    api rootProject.ext.jd_dependencies["PdaFlutterModule"]
+    api rootProject.ext.jd_dependencies["jdshooter"]
+    implementation 'org.conscrypt:conscrypt-android:2.5.2'
+    api files('lib/JDMobiSec.jar')// 京东加固失败解决方法
+    api rootProject.ext.jd_dependencies["JNOS"]
+    api files('lib/jdjr_captcha-release.aar')// 滑块依赖
+}

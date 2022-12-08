@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jd.saas.pdacheck.flow.step2.bean.CheckMissedSkuBean" />
+
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ripple_bg_card_global"
+        android:onClick="@{onItemClick}"
+        android:paddingHorizontal="@dimen/common_page_padding"
+        android:paddingTop="18dp"
+        android:paddingBottom="13dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.skuName}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_bigger"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_arrow_right_dark"
+            android:drawablePadding="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.arrowBtnText}"
+            android:textColor="@{bean.arrowBtnTextColor}"
+            android:textSize="@dimen/text_bigger"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_upc_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/check_missed_sku_upc"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_upc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.upcCode}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_upc_label"
+            app:layout_constraintEnd_toStartOf="@+id/tv_arrow"
+            app:layout_constraintStart_toEndOf="@+id/tv_upc_label"
+            tools:text="323432942343" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_loc_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/check_missed_sku_loc_type"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_upc_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_loc_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.locName ?? @string/check_missed_sku_empty_loc}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_loc_type_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_loc_type_label"
+            tools:text="便利店好品库位" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_stock_qty_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:singleLine="true"
+            android:text="@string/check_missed_stock_qty"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_loc_type_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_loc_type"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_stock_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{bean.stockQtyStr}"
+            android:textColor="@color/text_color_dark"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_loc_type_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_stock_qty_label"
+            tools:text="3320.123" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
